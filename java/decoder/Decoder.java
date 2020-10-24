@@ -3,9 +3,14 @@
 
 public abstract class Decoder {
 	static int times = 0;
-	static char[] tab;
-	static String bufer="aa";
-		/**
+	static String bufer="";
+	static String pod="";
+	static boolean pd = false;
+	static boolean z = false;
+
+
+
+	/**
 	 * Metoda pozwala na przekazanie ciągu znaków, który ma zostać odkodowany.
 	 * Sposób odkodowywania znaków przedstawiony jest w opisie zadania.
 	 *
@@ -34,64 +39,81 @@ public abstract class Decoder {
 	}
 
 
-	
+
+
+
 	public static void decode(String input){
-		String helper = input;
-		helper = helper.replace(" ","");
-		
+		StringBuilder helper = new StringBuilder(input);
+		StringBuilder helperpod = new StringBuilder("");
 
-		char[] ch = new char[input.length()]; 
-		char[] dh = new char[input.length()];
-  
-        // Copy character by character into array 
 
-		if(times != 0){
-			for(int i3 = times; i3 > 0; i3--){
-				bufer = bufer + helper;
-			}
-			times = 0;
-		}
+		for(int i = 0;i<helper.length();i++){
 
-        for (int i2 = 0; i2 < helper.length(); i2++) { 
-			if(helper.charAt(i2)=='0') {
+			if(helper.charAt(i)=='0'){
 
-				int p = i2+1;
-				if(helper.charAt(p)=='0') {
-
+				//00
+				if(helper.charAt(i+1)=='0'){
 					reset();
 					return;
-
 				}
-				else{
-					int j = helper.charAt(p)-'0';
+				 //01 false
+				else if(helper.charAt(i+1)=='1' && pd == false){
+					pd = true;
+					i=i+1;
+				}
+				//01 true
+				else if(helper.charAt(i+1)=='1' && pd == true){
+					pd = false;
+					for(int i3 = times; i3 > 0; i3--){
+						bufer = bufer + pod;
+					}
+					times = 0;
+					pod = "";
+					i=i+1;
+				}
 
-
-					StringBuilder sb = new StringBuilder(helper);
-   					sb.deleteCharAt(p);
-					sb.deleteCharAt(p-1);
-					helper = sb.toString();
+				else if(times != 0 && pd == false){
+					int n = i;
+					n = n-1;
 					
-					times = j;
-
-
 				}
-
-				bufer = bufer + helper;
-
-
+				//0x
+				else {
+					times = helper.charAt(i+1)-'0';
+					i=i+1;
+				}
+				
 			}
-        }
+			//01
+			else if(pd==true){
+				pod = pod + helper.charAt(i);
+			}
 
+			else{
+				if(times != 0 && pd==false){
+					for(int i3 = times; i3 > 0; i3--){
+						bufer = bufer + helper.charAt(i);
+					}
+					times = 0;
+				}
+				bufer = bufer + helper.charAt(i);
+			}
 
+		}
 
 	}
 
+
 	public static void main(String[] args) {
-		System.out.println("lloo");
-		decode("qw03");
+		String a="123";
+		System.out.println(a.length());
+		decode("qw003abc01d");
 		System.out.println("pr:"+bufer);
-		decode("q");
+		decode("zxcxv");
 		System.out.println("pr:"+bufer);
+		decode("01");
+		System.out.println("pr:"+bufer);
+
 		
 	}
 
