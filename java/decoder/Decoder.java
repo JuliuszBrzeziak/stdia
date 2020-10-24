@@ -1,8 +1,7 @@
 
 
 
-
-public class Decoder {
+public class Decoder extends DecoderAbstraction {
 	int times = 0;
   	String bufer="";
   	String pod="";

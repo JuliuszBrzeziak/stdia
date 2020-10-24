@@ -1,5 +1,5 @@
 
- abstract class DecoderAbstraction {
+public abstract class DecoderAbstraction {
 	/**
 	 * Metoda pozwala na przekazanie ciągu znaków, który ma zostać odkodowany.
 	 * Sposób odkodowywania znaków przedstawiony jest w opisie zadania.
@@ -26,17 +26,3 @@
 	public abstract void reset();
 }
 
-
-
-public class Decoder extends DecoderAbstraction{
-
-	public void decode(String input){
-		system.out.println("hello");
-	}
-
-	public static void main(String[] args) {
-		system.out.println("lloo");
-	}
-
-
-}
