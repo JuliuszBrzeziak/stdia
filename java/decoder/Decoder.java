@@ -76,3 +76,20 @@ public class Decoder extends DecoderAbstraction {
     }
 
   }
+}
+
+/*BŁĄD: clearTest(String, String)[1]> Test z kodem 00: Wynik nie zgadza się z oczekiwanym.
+BŁĄD: clearTest(String, String)[2]> Test z kodem 00: Wynik nie zgadza się z oczekiwanym.
+BŁĄD: clearTest(String, String)[3]> W trakcie pracy metody decode doszło do wyjątku java.lang.StringIndexOutOfBoundsException: index 2,length 2
+BŁĄD: clearTest(String, String)[4]> Test z kodem 00: Wynik nie zgadza się z oczekiwanym.
+BŁĄD: repetitionTest(String, String)[2]> Test z kodem wymuszającym powtórkę znaku: Wynik nie zgadza się z oczekiwanym.
+BŁĄD: resetTest(String, String)[2]> W trakcie pracy metody decode doszło do wyjątku java.lang.StringIndexOutOfBoundsException: index 2,length 2
+-------------------------------------------
+Wykonano     : 19
+OK           : 13
+Błąd w       : 6
+Koszt błędów : 520.0%
+Czas pracy   : 208 msec
+-------------------------------------------
+Nie wszystkie testy zostaly zaliczone
+*/
