@@ -1,0 +1,12 @@
+echo "33" | ./a.out # przekazuje 33 do a.out
+
+echo "33" | ./a.out >> new2.txt #dopisuje do new2
+
+
+./a.out < s.txt > new.txt #wywołuje program z arg s.txt i wpisuje go do new.txt
+
+echo {1..10} #wypisuje od 1 do 10
+
+echo {1..10} | tr " " "\n" # echo przekazuje tr a tr zamienia każdą spację na \na
+
+echo {1..10} | tr " " "\n" | sort -r > plik.txt #jak wyżej tylko sort to sortuje naodwrót w leksy a potem do pliku
