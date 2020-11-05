@@ -2,20 +2,19 @@ CC = g++
 CFLAGS = -o -Wall
 DEPS = stack.hpp
 
-%.o: clean %.cpp $(DEPS) 
-	$(CC) -c -o $@ $< $(CFLAGS)
-
-makestackc: clean
-	$(CC) stack.cpp -o stack.o -Wall
-
-all: clean v$(TARGET) 
+stack: clean
+	$(CC) stack.cpp -o stack.x -Wall 
 
 
-$(TARGET): clean $(TARGET).cpp 
-	$(CC) $(TARGET) -o $(TARGET).x -Wall
-	./$(TARGET).o
+gen: clean
+	$(CC) gen.cpp -o gen.x -Wall
 
-	
+all: stack gen
+
+stdin: gen
+	$(CC) stdin.cpp -o stdin.x -Wall
+	./gen.x | ./stdin.x
+
 clean:
-	$(RM) $(TARGET) *.x *.o *
+	rm -f *.o *.c
 

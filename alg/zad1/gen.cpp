@@ -1,8 +1,15 @@
 #include <iostream>
 #include <string>
 
+
+
 int main() {
-    std::cout << "gen" << std::endl;
+
+    int n = 100;
+
+
+
+    std::cout << "gens" << std::endl;
     std::cout << "gen2" ;
 
     std::cout << "gen2";

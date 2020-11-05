@@ -75,7 +75,7 @@ template<class T, int N>
 T& Stack<T,N>::top(){
 
 	if(empty()){
-		//obsluga błędu bo nie ma takiego
+		throw ("top:empty");
 		
 	} else{
 		return Data->i;
