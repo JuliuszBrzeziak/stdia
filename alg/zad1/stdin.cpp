@@ -3,7 +3,7 @@
 
 int main() {
     for (std::string line; std::getline(std::cin, line);) {
-        std::cout << line << std::endl;
+        std::cout << "stdin"<<line << std::endl;
     }
     return 0;
 }
