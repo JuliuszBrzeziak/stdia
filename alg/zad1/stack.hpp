@@ -34,7 +34,6 @@ public:
 		Node(U n, Node *node)
 		{
 			i = n;
-			cout << i << "ttutu";
 			prev = node;
 		}
 	};
@@ -54,22 +53,22 @@ private:
 	int Size = N;
 	int height = 0;
 };
+template <class T, int N>
+T pop()
+{
+}
 
 // Method to push data
 template <class T, int N>
 void Stack<T, N>::push(T x)
 {
-	cout << "x=" << x << endl;
 
 	if (height < Size)
 	{
 		Node<T> node = new Node<T>(x, &Top);
-		Node<T> node2 = new Node<T>(Top);
 
 		node.i = x;
 		Top = node;
-		cout << "node2=" << &node.i << "#    top=" << Top.i << endl;
-
 		height = height + 1;
 	}
 	else
@@ -88,7 +87,6 @@ void foo(Y &&a)
 template <class T, int N>
 T &Stack<T, N>::top()
 {
-	cout << "jestem Top!";
 	return Top.i;
 
 	if (empty())

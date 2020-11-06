@@ -6,30 +6,37 @@ using namespace std;
 
 int main()
 {
-    string s;
+    string s = "6 6";
     Stack<int, 100> stack;
-    cin >> s;
+    // cin >> s; //tu wchodzi ROZM
     int n = stoi(s);
-    for (int i = 0; i < 10; i++)
+#define ROZM 1
+    for (int i = 0; i < ROZM; i++)
     {
 
-        cin >> s;
+        // cin >> s; // tu wchodzi funkcja
         // if (s != "D")
         // {
-        // cin >> s;
+        // cin >> s; // tu argument
         int a = stoi(s);
         cout << "dostałem a=" << a << endl;
         stack.push(a);
+        cout << endl
+             << "top=" << stack.top();
+
         stack.push(--a);
+        cout << endl
+             << "top=" << stack.top();
+
         stack.push(--a);
+        cout << endl
+             << "top=" << stack.top();
+
         stack.push(--a);
 
-        cout << stack.top();
+        cout << endl
+             << "top=" << stack.top();
 
-        cout << stack.top();
-        cout << stack.top();
-
-        cout << stack.top();
         // }
         // else if (s == "D")
         // {
