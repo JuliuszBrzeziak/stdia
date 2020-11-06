@@ -4,6 +4,7 @@ DEPS = stack.hpp
 
 stack: clean
 	$(CC) stack.cpp -o stack.x -Wall 
+	./stack.x
 
 
 gen: clean

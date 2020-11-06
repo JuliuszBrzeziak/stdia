@@ -1,129 +1,41 @@
 #include <iostream>
+#include <string>
+#include "stack.hpp"
 
 using namespace std;
 
-
-template<class T, int N>
-class Stack {
-    public:
-
-	template<class U>
-	class Node{
-		Node *prev;
-	public:
-		U i;
-
-		void xd(){
-			cout << "X";
-		}
-	Node(){
-
-	}
-	Node(U n){
-		i = n;
-		prev = nullptr;
-	}
-
-	Node(U n,Node *node){
-		i = n;
-		prev = node;
-	}
-	};
-
-template<class Y>
-void foo (Y&& a);
-void push(T x);// Wstawia element x na stos
-T pop(); // Usuwa element ze stosu i zwraca jego wartość
-T& top(); // Zwraca referencję do najmłodszego elementu
-int size(); // Zwraca liczbę elementów na stosie
-
-bool empty();// Sprawdza czy stos jest pusty
-private:
-	Node<T> *Data =new Node<T>(1,nullptr);
-	int Size = N;
-	int topp;
-};
-
-// Method to push data
-template<class T, int N>
-void Stack<T,N>::push(T x)
+int main()
 {
-	Node<T> a = Node<T>(7,nullptr);
-	a.xd();
-	if (topp < N)
-	{
+    string s;
+    Stack<int, 100> stack;
+    cin >> s;
+    int n = stoi(s);
+    for (int i = 0; i < 10; i++)
+    {
 
-		*Data = a;
-		cout << Data->i <<"<-----------";
+        cin >> s;
+        // if (s != "D")
+        // {
+        // cin >> s;
+        int a = stoi(s);
+        cout << "dostałem a=" << a << endl;
+        stack.push(a);
+        stack.push(--a);
+        stack.push(--a);
+        stack.push(--a);
 
-		topp = topp + 1;
+        cout << stack.top();
 
-	}
-	else
-	{
-		cout << Size  <<endl;
-	}
-}
-template<class Y>
-void foo(Y&& a){
+        cout << stack.top();
+        cout << stack.top();
 
-	cout << "foo";
-
-}
-
-template<class T, int N>
-T& Stack<T,N>::top(){
-
-	if(empty()){
-		throw ("top:empty");
-		
-	} else{
-		return Data->i;
-	}
-
-}
-
-
-template<class T, int N>
-int Stack<T,N>::size(){
-
-	return topp;
-
-}
-
-
-
-template<class T, int N>
-bool Stack<T,N>::empty(){
-
-	if(topp == 0){
-
-		return true;
-	}else{
-
-		return false;
-	}
-
-}
-
-int main(){
-
-
-    Stack<int,5> stack;
-	//stack.foo(2);
-	cout << "TEST" << "#  : empty=" << stack.empty();
-
-	cout<< boolalpha <<stack.empty() << endl;
-    stack.push(10);
-	cout << "TEST" << "#  : empty=" << stack.empty() << "#   topp=" << stack.top() << "#   size=" << stack.size() << "#" << endl;
-
-	stack.push(2);
-	cout << "TEST" << "#  : empty=" << stack.empty() << "#   topp=" << stack.top() << "#   size=" << stack.size() << "#" << endl;
-
-	stack.push(4);
-
-	stack.push(3);
-	cout << "TEST" << "#  : empty=" << stack.empty() << "#   topp=" << stack.top() << "#   size=" << stack.size() << "#" << endl;
-
-
+        cout << stack.top();
+        // }
+        // else if (s == "D")
+        // {
+        //     cout << stack.top();
+        // }
+    }
+    cout << "koncze" << endl;
+    return 0;
 }
