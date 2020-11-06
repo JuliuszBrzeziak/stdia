@@ -35,7 +35,7 @@ int main()
         stack.push(--a);
 
         cout << endl
-             << "top=" << stack.top();
+             << "top=" << stack.pop();
 
         // }
         // else if (s == "D")

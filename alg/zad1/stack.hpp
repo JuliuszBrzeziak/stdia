@@ -47,15 +47,20 @@ public:
 
 	bool empty(); // Sprawdza czy stos jest pusty
 	Stack();
-	Node<T> Top;
+	Node<T> *Top;
 
 private:
 	int Size = N;
 	int height = 0;
 };
 template <class T, int N>
-T pop()
+T Stack<T, N>::pop()
 {
+	T help = Top->i;
+	cout << "I=" << Top->i << "   II=";
+	Top->prev;
+	cout << Top->i << endl;
+	return Top->i;
 }
 
 // Method to push data
@@ -65,10 +70,10 @@ void Stack<T, N>::push(T x)
 
 	if (height < Size)
 	{
-		Node<T> node = new Node<T>(x, &Top);
+		Node<T> node = new Node<T>(x, Top);
 
 		node.i = x;
-		Top = node;
+		Top = Top->prev;
 		height = height + 1;
 	}
 	else
@@ -87,11 +92,11 @@ void foo(Y &&a)
 template <class T, int N>
 T &Stack<T, N>::top()
 {
-	return Top.i;
+	return Top->i;
 
 	if (empty())
 	{
-		throw("Top:empty");
+		throw("Top->:empty");
 	}
 	else
 	{
@@ -137,14 +142,14 @@ bool Stack<T, N>::empty()
 
 // 	cout<< boolalpha <<stack.empty() << endl;
 //     stack.push(10);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top() << "#   size=" << stack.size() << "#" << endl;
+// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
 
 // 	stack.push(2);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top() << "#   size=" << stack.size() << "#" << endl;
+// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
 
 // 	stack.push(4);
 
 // 	stack.push(3);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top() << "#   size=" << stack.size() << "#" << endl;
+// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
 
 // }
