@@ -12,6 +12,9 @@ class Stack
 
 public:
 	Stack();
+	Stack<T, N>(const Stack<T, N> &s1);
+	Stack<T, N>(Stack<T, N> &&s1);
+
 	~Stack();
 
 	void push(T &&);
@@ -19,7 +22,52 @@ public:
 	int empty();
 	int size();
 	T &top();
+	Stack &operator=(const Stack &S)
+	{
+		cout << "Ocoppy";
+		tab = S.tab;
+		Size = S.Size;
+		height = S.height;
+		return *this;
+	};
+	Stack &operator=(Stack &&S)
+	{
+		cout << "Omove";
+		tab = S.tab;
+		Size = S.Size;
+		height = S.height;
+		return *this;
+	};
 };
+
+template <class T, int N>
+Stack<T, N>::Stack()
+{
+	Size = N;
+	tab = (T *)malloc(N);
+}
+
+template <class T, int N>
+Stack<T, N>::Stack(const Stack<T, N> &s1)
+{
+	cout << "ccoppy";
+
+	tab = (T *)malloc(N);
+	tab = s1.tab;
+	Size = s1.Size;
+	height = s1.height;
+}
+
+template <class T, int N>
+Stack<T, N>::Stack(Stack<T, N> &&s1)
+{
+	cout << "cmove";
+
+	tab = (T *)malloc(N);
+	tab = s1.tab;
+	Size = s1.Size;
+	height = s1.height;
+}
 
 template <class T, int N>
 T &Stack<T, N>::top()
@@ -35,16 +83,8 @@ int Stack<T, N>::size()
 }
 
 template <class T, int N>
-Stack<T, N>::Stack()
-{
-	Size = N;
-	tab = (T *)malloc(N);
-}
-
-template <class T, int N>
 Stack<T, N>::~Stack()
 {
-	free(tab);
 }
 
 template <class T, int N>

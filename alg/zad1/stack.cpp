@@ -13,5 +13,8 @@ int main()
     stack.push(9);
     cout << "top=" << stack.top() << endl;
     stack.push(8);
+    cout << "top=%" << stack.top() << "#size=" << stack.size() << "pop="
+         << " size=" << stack.size() << endl;
+    Stack<int, 100> stack2 = stack;
     cout << "top=%" << stack.top() << "#size=" << stack.size() << "pop=" << stack.pop() << stack.pop() << " size=" << stack.size() << endl;
 }
