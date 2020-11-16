@@ -93,7 +93,6 @@ class StrangeWorld implements StrangeWorldInterface
         if(this.map[row][col]!=null){
             return this.map[row][col];
         }else{
-            System.out.print("nie ma bloku w tej pozycji");
             return null;
         }
     }

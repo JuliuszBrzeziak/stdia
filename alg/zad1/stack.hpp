@@ -1,106 +1,30 @@
 #include <iostream>
-
+#include <stdlib.h>
 using namespace std;
 
 template <class T, int N>
 class Stack
 {
+
+	T *tab;			// Tablica wskaźników do elementów stosu
+	int Size;		// Rozmiar tablicy *tab
+	int height = 0; // Indeks pierwszego wolnego miejsca na stosie
+
 public:
-	template <typename U>
-	class Node
-	{
-	public:
-		U i;
-		Node *prev;
-
-		void xd()
-		{
-			cout << "X";
-		}
-		Node()
-		{
-		}
-		Node(U n)
-		{
-			i = n;
-			prev = nullptr;
-		}
-
-		Node(Node *node)
-		{
-			prev = node;
-		}
-
-		Node(U n, Node *node)
-		{
-			i = n;
-			prev = node;
-		}
-	};
-
-	template <class Y>
-	void foo(Y &&a);
-	void push(T x); // Wstawia element x na stos
-	T pop();		// Usuwa element ze stosu i zwraca jego wartość
-	T &top();		// Zwraca referencję do najmłodszego elementu
-	int size();		// Zwraca liczbę elementów na stosie
-
-	bool empty(); // Sprawdza czy stos jest pusty
 	Stack();
-	Node<T> *Top;
+	~Stack();
 
-private:
-	int Size = N;
-	int height = 0;
+	void push(T &&);
+	T pop();
+	int empty();
+	int size();
+	T &top();
 };
-template <class T, int N>
-T Stack<T, N>::pop()
-{
-	T help = Top->i;
-	cout << "I=" << Top->i << "   II=";
-	Top->prev;
-	cout << Top->i << endl;
-	return Top->i;
-}
-
-// Method to push data
-template <class T, int N>
-void Stack<T, N>::push(T x)
-{
-
-	if (height < Size)
-	{
-		Node<T> node = new Node<T>(x, Top);
-
-		node.i = x;
-		Top = Top->prev;
-		height = height + 1;
-	}
-	else
-	{
-		cout << "oversize" << endl;
-	}
-}
-
-template <class Y>
-void foo(Y &&a)
-{
-
-	cout << "foo";
-}
 
 template <class T, int N>
 T &Stack<T, N>::top()
 {
-	return Top->i;
-
-	if (empty())
-	{
-		throw("Top->:empty");
-	}
-	else
-	{
-	}
+	return tab[height - 1];
 }
 
 template <class T, int N>
@@ -113,43 +37,41 @@ int Stack<T, N>::size()
 template <class T, int N>
 Stack<T, N>::Stack()
 {
-	printf("konstruktor");
-	Node<T> *node(nullptr);
-	Top = node;
+	Size = N;
+	tab = (T *)malloc(N);
 }
 
 template <class T, int N>
-bool Stack<T, N>::empty()
+Stack<T, N>::~Stack()
 {
-
-	if (height == 0)
-	{
-
-		return true;
-	}
-	else
-	{
-
-		return false;
-	}
+	free(tab);
 }
 
-// int main(){
+template <class T, int N>
+void Stack<T, N>::push(T &&elt)
+{
+	if (height < N)
+	{
+		tab[height] = elt;
+		cout << tab[height];
+		height++;
+	}
+	else
+		exit(11);
+}
 
-//     Stack<int,5> stack;
-// 	//stack.foo(2);
-// 	cout << "TEST" << "#  : empty=" << stack.empty();
+template <class T, int N>
+T Stack<T, N>::pop()
+{
+	if (!height)
+		exit(2);
 
-// 	cout<< boolalpha <<stack.empty() << endl;
-//     stack.push(10);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
+	T res(tab[--height]); // Ze względu na konieczność usuwania są
+	return res;
+}
 
-// 	stack.push(2);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
-
-// 	stack.push(4);
-
-// 	stack.push(3);
-// 	cout << "TEST" << "#  : empty=" << stack.empty() << "#   height=" << stack.Top->() << "#   size=" << stack.size() << "#" << endl;
-
-// }
+template <class T, int N>
+int Stack<T, N>::empty()
+{
+	return height == 0;
+}
