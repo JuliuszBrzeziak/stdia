@@ -6,7 +6,7 @@ template <class T, int N>
 class Stack
 {
 
-	T *tab;			// Tablica wskaźników do elementów stosu
+	T *tab;			// Tablica
 	int Size;		// Rozmiar tablicy *tab
 	int height = 0; // Indeks pierwszego wolnego miejsca na stosie
 
@@ -50,7 +50,6 @@ Stack<T, N>::Stack()
 template <class T, int N>
 Stack<T, N>::Stack(const Stack<T, N> &s1)
 {
-	cout << "ccoppy";
 
 	tab = (T *)malloc(N);
 	tab = s1.tab;
@@ -61,7 +60,6 @@ Stack<T, N>::Stack(const Stack<T, N> &s1)
 template <class T, int N>
 Stack<T, N>::Stack(Stack<T, N> &&s1)
 {
-	cout << "cmove";
 
 	tab = (T *)malloc(N);
 	tab = s1.tab;
@@ -90,23 +88,23 @@ Stack<T, N>::~Stack()
 template <class T, int N>
 void Stack<T, N>::push(T &&elt)
 {
+
 	if (height < N)
 	{
 		tab[height] = elt;
-		cout << tab[height];
 		height++;
 	}
 	else
-		exit(11);
+		throw std::out_of_range("push out of range");
 }
 
 template <class T, int N>
 T Stack<T, N>::pop()
 {
 	if (!height)
-		exit(2);
+		throw std::out_of_range("pop out of range");
 
-	T res(tab[--height]); // Ze względu na konieczność usuwania są
+	T res(tab[--height]);
 	return res;
 }
 

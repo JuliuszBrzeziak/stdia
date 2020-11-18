@@ -9,6 +9,7 @@ stack: clean
 
 gen: clean
 	$(CC) gen.cpp -o gen.x -Wall
+	./gen.x
 
 all: stack gen
 
