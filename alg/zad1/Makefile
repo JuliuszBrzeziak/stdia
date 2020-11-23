@@ -17,6 +17,13 @@ stdin: gen
 	$(CC) stdin.cpp -o stdin.x -Wall
 	./gen.x | ./stdin.x
 
+queue: clean
+	$(CC) queue.cpp -o queue.x -Wall
+	./queue.x
 clean:
 	rm -f *.o *.c
+
+test-queue: clean
+	$(CC) test-queue.cpp -o test-queue.x -Wall
+	./test-queue.x
 
