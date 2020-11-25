@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "stack.hpp"
+#include <unistd.h>
 
 using namespace std;
 
@@ -14,6 +15,8 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
+        usleep(100);
+
         cin >> sn;
         if (sn == "A")
         {
@@ -28,12 +31,13 @@ int main()
         {
             if (stack.empty())
             {
-                cout << "EMPTY" << endl;
+                cout << "EMPTYY" << endl;
             }
             else
             {
-                cout << stack.pop() << endl;
+                cout << "pop" << stack.pop() << endl;
             }
         }
+        cout << "stack:end";
     }
 }

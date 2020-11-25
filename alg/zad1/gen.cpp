@@ -3,19 +3,27 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <unistd.h>
 
 using namespace std;
 
 int main()
 {
     srand(time(NULL));
-    int n = 10;
-    cout << n << endl;
+    int n = rand() % 1000000;
+    n = 1000000;
+    cout << "1000000" << endl;
 
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < n; i++)
     {
-        cout << rand() % 1000000 << endl;
+        cout << "A" << endl;
+        cout << i << endl;
+        cout << "D" << endl;
     }
+    // for (int j = 0; j < n; j++)
+    // {
+    //     cout << "D" << endl;
+    // }
 
     return 0;
 }

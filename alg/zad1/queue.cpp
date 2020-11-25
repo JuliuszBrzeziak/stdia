@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "queue.hpp"
+#include <chrono>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ int main()
      string sn;
      cin >> sn;
      int n = stoi(sn);
+     chrono::time_point<chrono::system_clock> start, end;
+     start = chrono::system_clock::now();
 
      for (int i = 0; i < n; i++)
      {
@@ -36,4 +39,7 @@ int main()
                }
           }
      }
+     end = chrono::system_clock::now();
+     chrono::duration<double> elapsed_seconds = end - start;
+     cout << "operacja trwała: " << elapsed_seconds.count() << "s\n";
 }
