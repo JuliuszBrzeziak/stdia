@@ -12,8 +12,6 @@ int main()
      string sn;
      cin >> sn;
      int n = stoi(sn);
-     chrono::time_point<chrono::system_clock> start, end;
-     start = chrono::system_clock::now();
 
      for (int i = 0; i < n; i++)
      {
@@ -23,10 +21,7 @@ int main()
                cin >> sn;
                queue.push(stoi(sn));
           }
-          else if (sn == "S")
-          {
-               cout << queue.size() << endl;
-          }
+
           else if (sn == "D")
           {
                if (queue.empty())
@@ -38,8 +33,9 @@ int main()
                     cout << queue.pop() << endl;
                }
           }
+          else if (sn == "S")
+          {
+               cout << queue.size() << endl;
+          }
      }
-     end = chrono::system_clock::now();
-     chrono::duration<double> elapsed_seconds = end - start;
-     cout << "operacja trwała: " << elapsed_seconds.count() << "s\n";
 }

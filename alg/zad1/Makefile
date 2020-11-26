@@ -16,7 +16,7 @@ rungen: gen
 	./gen.x
 
 try: gen stack
-	./gen.x | ./stack.x
+	time ./gen.x | ./stack.x
 
 all: stack gen
 

@@ -12,9 +12,10 @@ int main()
     srand(time(NULL));
     int n = rand() % 1000000;
     n = 1000000;
-    cout << "1000000" << endl;
+    cout << n << endl;
 
     for (int i = 0; i < n; i++)
+
     {
         cout << "A" << endl;
         cout << i << endl;
@@ -24,6 +25,5 @@ int main()
     // {
     //     cout << "D" << endl;
     // }
-
     return 0;
 }

@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
-#include "stack.hpp"
+// #include "stack.hpp"
 #include <unistd.h>
+#include <queue>
 
 using namespace std;
 
 int main()
 {
-    Stack<int, 1000000> stack;
+    queue<int> queue;
 
     string sn;
     cin >> sn;
@@ -16,28 +17,29 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> sn;
-        cout << "#" << sn << "#";
 
         if (sn == "A")
         {
             cin >> sn;
-            stack.push(stoi(sn));
+            queue.push(stoi(sn));
         }
-        else if (sn == "S")
-        {
-            cout << stack.size() << endl;
-        }
+
         else if (sn == "D")
         {
-            if (stack.empty())
+            if (queue.empty())
             {
                 cout << "EMPTYY" << endl;
             }
             else
             {
-                cout << "pop" << stack.pop() << endl;
+                cout << queue.front() << endl;
+                queue.pop();
             }
         }
-        cout << "stack:end";
+
+        else if (sn == "S")
+        {
+            cout << queue.size() << endl;
+        }
     }
 }

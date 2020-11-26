@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
-#include "stack.hpp"
+// #include "stack.hpp"
 #include <unistd.h>
+#include <stack>
 
 using namespace std;
 
 int main()
 {
-    Stack<int, 1000000> stack;
+    stack<int> stack;
 
     string sn;
     cin >> sn;
@@ -16,17 +17,13 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> sn;
-        cout << "#" << sn << "#";
 
         if (sn == "A")
         {
             cin >> sn;
             stack.push(stoi(sn));
         }
-        else if (sn == "S")
-        {
-            cout << stack.size() << endl;
-        }
+
         else if (sn == "D")
         {
             if (stack.empty())
@@ -35,9 +32,14 @@ int main()
             }
             else
             {
-                cout << "pop" << stack.pop() << endl;
+                cout << stack.top() << endl;
+                stack.pop();
             }
         }
-        cout << "stack:end";
+
+        else if (sn == "S")
+        {
+            cout << stack.size() << endl;
+        }
     }
 }
