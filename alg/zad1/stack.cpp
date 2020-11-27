@@ -16,7 +16,6 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> sn;
-        cout << "#" << sn << "#";
 
         if (sn == "A")
         {
@@ -31,13 +30,12 @@ int main()
         {
             if (stack.empty())
             {
-                cout << "EMPTYY" << endl;
+                cout << "EMPTY" << endl;
             }
             else
             {
-                cout << "pop" << stack.pop() << endl;
+                cout << stack.pop() << endl;
             }
         }
-        cout << "stack:end";
     }
 }

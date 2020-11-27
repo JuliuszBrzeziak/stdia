@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-// #include "stack.hpp"
 #include <unistd.h>
 #include <stack>
 
@@ -28,7 +27,7 @@ int main()
         {
             if (stack.empty())
             {
-                cout << "EMPTYY" << endl;
+                cout << "EMPTY" << endl;
             }
             else
             {

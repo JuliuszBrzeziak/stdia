@@ -12,11 +12,31 @@ runstack: stack
 gen: clean
 	$(CC) gen.cpp -o gen.x -Wall
 
+stdstack: clean
+	$(CC) stdstack.cpp -o stdstack.x -Wall
+
+stdqueue: clean
+	$(CC) stdqueue.cpp -o stdqueue.x -Wall
+
 rungen: gen
 	./gen.x
 
-try: gen stack
-	time ./gen.x | ./stack.x
+trys: gen stack stdstack
+	echo "stack test"
+	echo "my lib"
+	time ./gen.x | ./stack.x >> mystack.txt
+	echo "std"
+	time ./gen.x | ./stdstack.x >> stdstack.txt
+
+
+tryq: gen queue stdqueue
+	echo "queue test"
+	echo "my lib"
+	time ./gen.x | ./queue.x 
+	echo "std"
+	time ./gen.x | ./stdqueue.x >> stdqueue.txt
+
+
 
 all: stack gen
 
@@ -43,3 +63,5 @@ test-stack: stack gen
 	./gen.x | ./stack.x
 
 
+tar: clean
+	tar -czvf Julius_Brzeziak_Zestaw01.tar.gz *
