@@ -13,6 +13,8 @@ public:
     struct Iterator
     {
         T *sptr;
+        bool operator==(const Iterator &lhs);
+        bool operator!=(const Iterator &lhs);
     };
 
     ArrayList();
@@ -44,6 +46,14 @@ public:
     Iterator begin();       //zwraca iterator na pierwszy el
     Iterator end();         //zwraca iterator na koniec
     T get(Iterator);
+    Iterator operator++();
+    Iterator operator--();
+
+    T test(Iterator it);
+    T test2(Iterator it, Iterator it2);
+
+    Iterator next(Iterator it);
+    Iterator prev(Iterator it);
 };
 
 template <class T>
@@ -132,23 +142,86 @@ T ArrayList<T>::pop_back()
 template <class T>
 typename ArrayList<T>::Iterator ArrayList<T>::begin()
 {
-    Iterator::sptr = ptr;
 
-    return Iterator::sptr;
+    Iterator a;
+    a.sptr = ptr;
+
+    return a;
 }
 
 template <class T>
 typename ArrayList<T>::Iterator ArrayList<T>::end()
 {
+    Iterator a;
+    a.sptr = ptr + siz - 1;
+    return a;
+}
 
-    Iterator::sptr = ptr + siz;
-
+template <class T>
+T ArrayList<T>::get(Iterator it)
+{
+    end();
     return Iterator::sptr;
 }
 
 template <class T>
-T ArrayList<T>::get(Iterator)
+typename ArrayList<T>::Iterator ArrayList<T>::insert(Iterator it, T &&x)
 {
-    end();
-    return Iterator::sptr;
+    Iterator a = it;
+    return a;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::operator++()
+{
+    Iterator::sptr++;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::operator--()
+{
+    Iterator::sptr--;
+}
+
+template <class T>
+T ArrayList<T>::test(ArrayList<T>::Iterator it)
+{
+    return *it.sptr;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::next(Iterator it)
+{
+    Iterator temp = it;
+    temp.sptr++;
+    return temp;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::prev(Iterator it)
+{
+    Iterator temp = it;
+    temp.sptr--;
+    return temp;
+}
+
+template <class T>
+bool ArrayList<T>::Iterator::operator==(const Iterator &lhs)
+{
+    return lhs.sptr == this->sptr;
+}
+
+template <class T>
+bool ArrayList<T>::Iterator::operator!=(const Iterator &lhs)
+{
+    return lhs.sptr != this->sptr;
+}
+
+template <class T>
+T ArrayList<T>::test2(Iterator it, Iterator it2)
+{
+    if (it == it2)
+    {
+    }
+    return 0;
 }

@@ -2,13 +2,16 @@ CC = g++
 CFLAGS = -o -Wall
 DEPS = stack.hpp
 
-stack: clean
-	$(CC) stack.cpp -o stack.x -Wall 
+
 
 array: clean
 	$(CC) arraylist.cxx -o arraylist.x -Wall
 	./arraylist.x
 
+
+test: clean
+	$(CC) test.cxx -o test.x -Wall
+	./test.x
 
 
 clean:
