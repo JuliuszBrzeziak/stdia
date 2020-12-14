@@ -12,7 +12,7 @@ public:
 
     struct Iterator
     {
-        /* data */
+        T *sptr;
     };
 
     ArrayList();
@@ -43,6 +43,7 @@ public:
     bool empty();           //zwraca true jeśli pusta
     Iterator begin();       //zwraca iterator na pierwszy el
     Iterator end();         //zwraca iterator na koniec
+    T get(Iterator);
 };
 
 template <class T>
@@ -120,9 +121,34 @@ T ArrayList<T>::pop_back()
 {
     if (empty())
     {
-        throw "list empty!";
+        throw runtime_error("list is empty!");
     }
 
+    cout << "size" << siz;
     cout << "pop_back" << *(ptr + --siz) << endl;
     return *(ptr + siz);
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::begin()
+{
+    Iterator::sptr = ptr;
+
+    return Iterator::sptr;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::end()
+{
+
+    Iterator::sptr = ptr + siz;
+
+    return Iterator::sptr;
+}
+
+template <class T>
+T ArrayList<T>::get(Iterator)
+{
+    end();
+    return Iterator::sptr;
 }
