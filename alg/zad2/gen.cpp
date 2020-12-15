@@ -18,7 +18,7 @@ int main()
 
     {
         cout << "A" << endl;
-        cout << rand() % 1000000 << endl;
+        cout << i << endl;
         cout << "D" << endl;
     }
     // for (int j = 0; j < n; j++)

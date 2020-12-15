@@ -32,9 +32,9 @@ trys: gen stack stdstack
 tryq: gen queue stdqueue
 	echo "queue test"
 	echo "my lib"
-	time ./gen.x | ./queue.x >> myqueue.txt
+	time ./gen.x | ./queue.x && 99>> myqueue.txt
 	echo "std"
-	time ./gen.x | ./stdqueue.x >> stdqueue.txt
+	time ./gen.x | ./stdqueue.x 100000 >> stdqueue.txt
 
 
 

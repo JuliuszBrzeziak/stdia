@@ -9,9 +9,16 @@ array: clean
 	./arraylist.x
 
 
-test: clean
-	$(CC) test.cxx -o test.x -Wall
-	./test.x
+test: clean gen
+	$(CC) queue.cpp -o queue.x -Wall
+	./queue.x
+
+
+
+gen: clean
+	g++ gen.cpp -o gen.x -Wall
+
+
 
 
 clean:

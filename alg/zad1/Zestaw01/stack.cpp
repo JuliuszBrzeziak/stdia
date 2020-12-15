@@ -3,6 +3,8 @@
 #include "stack.hpp"
 #include <unistd.h>
 
+#define N 1000000
+
 using namespace std;
 
 int main()

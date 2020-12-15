@@ -34,7 +34,7 @@ tryq: gen queue stdqueue
 	echo "my lib"
 	time ./gen.x | ./queue.x >> myqueue.txt
 	echo "std"
-	time ./gen.x | ./stdqueue.x >> stdqueue.txt
+	time ./gen.x | ./stdqueue.x  >> stdqueue.txt
 
 
 
@@ -51,7 +51,7 @@ runqueue: queue
 	./queue.x
 
 clean:
-	rm -f *.o *.c
+	rm -f *.o *.c *.txt
 
 test-queue: queue gen
 	$(CC) test-queue.cpp -o test-queue.x -Wall
