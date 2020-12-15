@@ -34,5 +34,7 @@ int main()
         std::cout
             << "foreach" << aa << std::endl;
 
+    cout << a.test(a.find(300));
+
     return 0;
 }

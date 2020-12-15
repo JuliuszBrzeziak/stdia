@@ -382,3 +382,15 @@ int ArrayList<T>::size()
 {
     return siz;
 }
+
+template <class T>
+typename ArrayList<T>::Iterator ArrayList<T>::find(const T &x)
+{
+    for (Iterator i = begin(); i < end(); i++)
+    {
+        if (*i == x)
+        {
+            return i;
+        }
+    }
+}
