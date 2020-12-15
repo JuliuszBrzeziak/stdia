@@ -21,8 +21,11 @@ public:
         bool operator>=(const Iterator &lhs);
 
         Iterator &operator++();
+        Iterator &operator++(int);
 
         Iterator &operator--();
+        Iterator &operator--(int);
+
         T &operator*();
     };
 
@@ -55,8 +58,16 @@ public:
     Iterator begin();       //zwraca iterator na pierwszy el
     Iterator end();         //zwraca iterator na koniec
     T get(Iterator);
+    bool operator==(const ArrayList &lhs);
+    bool operator!=(const ArrayList &lhs);
+    bool operator<=(const ArrayList &lhs);
+    bool operator<(const ArrayList &lhs);
+    bool operator>(const ArrayList &lhs);
+    bool operator>=(const ArrayList &lhs);
+
     Iterator &operator++();
     Iterator &operator--();
+    T &operator*();
 
     T test(Iterator it);
     T test2(Iterator it, Iterator it2);
@@ -162,7 +173,7 @@ template <class T>
 typename ArrayList<T>::Iterator ArrayList<T>::end()
 {
     Iterator a;
-    a.sptr = ptr + siz - 1;
+    a.sptr = ptr + siz;
     return a;
 }
 
@@ -308,6 +319,65 @@ template <class T>
 bool ArrayList<T>::Iterator::operator>=(const Iterator &lhs)
 {
     if (this->sptr >= lhs.sptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+typename ArrayList<T>::Iterator &ArrayList<T>::Iterator::operator++(int)
+{
+    Iterator::sptr++;
+    return *this;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator &ArrayList<T>::Iterator::operator--(int)
+{
+    Iterator::sptr--;
+    return *this;
+}
+
+template <class T>
+bool ArrayList<T>::operator==(const ArrayList<T> &lhs)
+{
+    return lhs == ptr;
+}
+
+template <class T>
+bool ArrayList<T>::operator<=(const ArrayList<T> &lhs)
+{
+    if (ptr >= lhs.ptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+bool ArrayList<T>::operator<(const ArrayList<T> &lhs)
+{
+    if (this->ptr < lhs.ptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+bool ArrayList<T>::operator>(const ArrayList<T> &lhs)
+{
+    if (this->ptr > lhs.ptr)
     {
         return true;
     }

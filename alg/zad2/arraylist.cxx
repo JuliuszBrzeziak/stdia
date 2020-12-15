@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <string>
 #include "arraylist.hxx"
 
 using namespace std;
@@ -19,9 +21,11 @@ int main()
     cout << a.test(a.begin());
     cout << a.test(a.next(a.begin())) << endl;
 
-    a.insert(a.begin(), 4);
+    a.insert(a.next(a.begin()), 4);
+    a.push_back(600);
+    cout << a.test(a.end()) << "działasz??";
 
-    for (const auto &aa : a)
-        std::cout << "foreach" << aa << std::endl;
+    for (const auto &aas : a)
+        std::cout << "foreach" << aas << std::endl;
     return 0;
 }
