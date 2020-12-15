@@ -35,8 +35,31 @@ int main()
             << "foreach" << aa << std::endl;
 
     cout << a.test(a.find(77777));
+    cout << endl
+         << endl;
 
     cout << *(a.ptr + 2);
+    for (const auto &aa : a)
+        std::cout
+            << "foreach" << aa << std::endl;
+
+    cout << a.size();
+    if (a.empty())
+    {
+        cout << "EMPTY";
+    }
+
+    a.pop_back();
+    a.pop_back();
+
+    a.pop_back();
+
+    a.pop_back();
+
+    if (a.empty())
+    {
+        cout << "EMPTYyyy";
+    }
 
     return 0;
 }

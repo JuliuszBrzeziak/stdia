@@ -12,6 +12,7 @@ int main()
      string sn;
      cin >> sn;
      int n = stoi(sn);
+     cout << array.siz;
 
      for (int i = 0; i < n; i++)
      {
@@ -24,9 +25,9 @@ int main()
 
           else if (sn == "D")
           {
-               if (array.empty())
+               if (array.size() == 0)
                {
-                    cout << "EMPTY" << endl;
+                    cout << "EMPTYyyy";
                }
                else
                {

@@ -11,7 +11,7 @@ array: clean
 
 test: clean gen
 	$(CC) queue.cpp -o queue.x -Wall
-	./queue.x
+	./gen.x | ./queue.x >>  mylist.txt
 
 
 
