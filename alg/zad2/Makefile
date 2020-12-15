@@ -5,7 +5,7 @@ DEPS = stack.hpp
 
 
 array: clean
-	$(CC) arraylist.cxx -o arraylist.x -Wall
+	$(CC) arraylist.cxx -o arraylist.x -pedantic-errors
 	./arraylist.x
 
 

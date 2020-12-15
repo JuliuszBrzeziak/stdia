@@ -15,6 +15,15 @@ public:
         T *sptr;
         bool operator==(const Iterator &lhs);
         bool operator!=(const Iterator &lhs);
+        bool operator<=(const Iterator &lhs);
+        bool operator<(const Iterator &lhs);
+        bool operator>(const Iterator &lhs);
+        bool operator>=(const Iterator &lhs);
+
+        Iterator &operator++();
+
+        Iterator &operator--();
+        T &operator*();
     };
 
     ArrayList();
@@ -46,8 +55,8 @@ public:
     Iterator begin();       //zwraca iterator na pierwszy el
     Iterator end();         //zwraca iterator na koniec
     T get(Iterator);
-    Iterator operator++();
-    Iterator operator--();
+    Iterator &operator++();
+    Iterator &operator--();
 
     T test(Iterator it);
     T test2(Iterator it, Iterator it2);
@@ -167,20 +176,44 @@ T ArrayList<T>::get(Iterator it)
 template <class T>
 typename ArrayList<T>::Iterator ArrayList<T>::insert(Iterator it, T &&x)
 {
-    Iterator a = it;
-    return a;
+
+    cout << "ah";
+    int i = *ptr;
+    int e = *end().sptr;
+    int s = *begin().sptr;
+
+    T *ii = it.sptr;
+    T *ee = end().sptr;
+    T *ss = begin().sptr;
+    cout << "insert:" << *ee << endl;
+
+    for (Iterator iii = end(); iii >= begin(); iii = prev(iii))
+    {
+        *(iii.sptr + 1) = *iii.sptr;
+    }
+    *it.sptr = x;
+    siz++;
 }
 
 template <class T>
-typename ArrayList<T>::Iterator ArrayList<T>::operator++()
+typename ArrayList<T>::Iterator &ArrayList<T>::operator++()
 {
     Iterator::sptr++;
+    return *this;
 }
 
 template <class T>
-typename ArrayList<T>::Iterator ArrayList<T>::operator--()
+typename ArrayList<T>::Iterator &ArrayList<T>::Iterator::operator++()
+{
+    Iterator::sptr++;
+    return *this;
+}
+
+template <class T>
+typename ArrayList<T>::Iterator &ArrayList<T>::operator--()
 {
     Iterator::sptr--;
+    return *this;
 }
 
 template <class T>
@@ -224,4 +257,62 @@ T ArrayList<T>::test2(Iterator it, Iterator it2)
     {
     }
     return 0;
+}
+
+template <class T>
+T &ArrayList<T>::Iterator::operator*()
+{
+
+    return *sptr;
+}
+template <class T>
+bool ArrayList<T>::Iterator::operator<=(const Iterator &lhs)
+{
+    if (this->sptr >= lhs.sptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+bool ArrayList<T>::Iterator::operator<(const Iterator &lhs)
+{
+    if (this->sptr < lhs.sptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+bool ArrayList<T>::Iterator::operator>(const Iterator &lhs)
+{
+    if (this->sptr > lhs.sptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <class T>
+bool ArrayList<T>::Iterator::operator>=(const Iterator &lhs)
+{
+    if (this->sptr >= lhs.sptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
