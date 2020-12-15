@@ -34,7 +34,9 @@ int main()
         std::cout
             << "foreach" << aa << std::endl;
 
-    cout << a.test(a.find(300));
+    cout << a.test(a.find(77777));
+
+    cout << *(a.ptr + 2);
 
     return 0;
 }

@@ -39,6 +39,7 @@ public:
 
     // the destructor to free memory
     ~ArrayList();
+
     //uniwersalna referencja
     void push_front(T &&x); //wstawia element na początek
     T pop_front();          //usuwa element z początku i zwraca jego wartość lub wyjątek jeśli pusta
@@ -80,8 +81,8 @@ template <class T>
 ArrayList<T>::ArrayList()
 {
 
-    ptr = new T[100]{};
-    cap = 100;
+    ptr = new T[1000]{};
+    cap = 1000;
 }
 
 template <class T>
@@ -103,12 +104,10 @@ ArrayList<T>::ArrayList(const ArrayList &source)
 template <class T>
 ArrayList<T>::ArrayList(ArrayList &&source)
 {
-    // transfer owenership from the source
     siz = source.siz;
     cap = source.cap;
     ptr = source.ptr;
 
-    // clear the cource
     source.ptr = nullptr;
     source.siz = 0;
 }
@@ -141,7 +140,6 @@ void ArrayList<T>::push_back(T &&x)
     }
 
     *end() = x;
-    cout << "push_back" << *end() << endl;
     siz++;
 }
 
@@ -175,13 +173,6 @@ typename ArrayList<T>::Iterator ArrayList<T>::end()
     Iterator a;
     a.sptr = ptr + siz;
     return a;
-}
-
-template <class T>
-T ArrayList<T>::get(Iterator it)
-{
-    end();
-    return Iterator::sptr;
 }
 
 template <class T>
@@ -250,15 +241,6 @@ template <class T>
 bool ArrayList<T>::Iterator::operator!=(const Iterator &lhs)
 {
     return lhs.sptr != this->sptr;
-}
-
-template <class T>
-T ArrayList<T>::test2(Iterator it, Iterator it2)
-{
-    if (it == it2)
-    {
-    }
-    return 0;
 }
 
 template <class T>
@@ -350,13 +332,12 @@ T ArrayList<T>::pop_front()
 {
     T temp = *begin();
     Iterator a = begin();
-    cout << "asda";
+
     for (a; a < end(); ++a)
     {
         *a = *next(a);
         cout << *a;
     }
-    cout << "asda";
 
     siz--;
     return temp;
@@ -377,6 +358,7 @@ typename ArrayList<T>::Iterator ArrayList<T>::erase(Iterator it)
     siz--;
     return temp;
 }
+
 template <typename T>
 int ArrayList<T>::size()
 {
