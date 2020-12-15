@@ -48,7 +48,7 @@ public:
 
     Iterator find(const T &x); //wyszukuje el o wart x i zwraca jego poz
 
-    Iterator erase(Iterator); //usuwa el i zwraca iter do kolejnego ele
+    Iterator erase(Iterator it); //usuwa el i zwraca iter do kolejnego ele
 
     Iterator insert(Iterator it, T &&x); // wstawia x przed poz it i zwraca pozycję x
 
@@ -58,12 +58,12 @@ public:
     Iterator begin();       //zwraca iterator na pierwszy el
     Iterator end();         //zwraca iterator na koniec
     T get(Iterator);
-    bool operator==(const ArrayList &lhs);
-    bool operator!=(const ArrayList &lhs);
-    bool operator<=(const ArrayList &lhs);
-    bool operator<(const ArrayList &lhs);
-    bool operator>(const ArrayList &lhs);
-    bool operator>=(const ArrayList &lhs);
+    // bool operator==(const ArrayList &lhs);
+    // bool operator!=(const ArrayList &lhs);
+    // bool operator<=(const ArrayList &lhs);
+    // bool operator<(const ArrayList &lhs);
+    // bool operator>(const ArrayList &lhs);
+    // bool operator>=(const ArrayList &lhs);
 
     Iterator &operator++();
     Iterator &operator--();
@@ -135,14 +135,13 @@ bool ArrayList<T>::empty()
 template <class T>
 void ArrayList<T>::push_back(T &&x)
 {
-
     if (siz == cap)
     {
         throw runtime_error("siz==cap");
     }
 
-    *(ptr + siz) = x;
-    cout << "push_back" << *(ptr + siz) << endl;
+    *end() = x;
+    cout << "push_back" << *end() << endl;
     siz++;
 }
 
@@ -153,10 +152,11 @@ T ArrayList<T>::pop_back()
     {
         throw runtime_error("list is empty!");
     }
+    T temp = *end()--;
 
-    cout << "size" << siz;
-    cout << "pop_back" << *(ptr + --siz) << endl;
-    return *(ptr + siz);
+    siz--;
+
+    return temp;
 }
 
 template <class T>
@@ -188,22 +188,13 @@ template <class T>
 typename ArrayList<T>::Iterator ArrayList<T>::insert(Iterator it, T &&x)
 {
 
-    cout << "ah";
-    int i = *ptr;
-    int e = *end().sptr;
-    int s = *begin().sptr;
-
-    T *ii = it.sptr;
-    T *ee = end().sptr;
-    T *ss = begin().sptr;
-    cout << "insert:" << *ee << endl;
-
-    for (Iterator iii = end(); iii >= begin(); iii = prev(iii))
+    for (Iterator iii = end(); iii >= it; iii = prev(iii))
     {
         *(iii.sptr + 1) = *iii.sptr;
     }
     *it.sptr = x;
     siz++;
+    return it;
 }
 
 template <class T>
@@ -343,46 +334,51 @@ typename ArrayList<T>::Iterator &ArrayList<T>::Iterator::operator--(int)
 }
 
 template <class T>
-bool ArrayList<T>::operator==(const ArrayList<T> &lhs)
+void ArrayList<T>::push_front(T &&x)
 {
-    return lhs == ptr;
+
+    for (Iterator iii = end(); iii >= begin(); iii = prev(iii))
+    {
+        *(iii.sptr + 1) = *iii.sptr;
+    }
+    *begin() = x;
+    siz++;
 }
 
 template <class T>
-bool ArrayList<T>::operator<=(const ArrayList<T> &lhs)
+T ArrayList<T>::pop_front()
 {
-    if (ptr >= lhs.ptr)
+    T temp = *begin();
+    Iterator a = begin();
+    cout << "asda";
+    for (a; a < end(); ++a)
     {
-        return true;
+        *a = *next(a);
+        cout << *a;
     }
-    else
-    {
-        return false;
-    }
+    cout << "asda";
+
+    siz--;
+    return temp;
 }
 
 template <class T>
-bool ArrayList<T>::operator<(const ArrayList<T> &lhs)
+typename ArrayList<T>::Iterator ArrayList<T>::erase(Iterator it)
 {
-    if (this->ptr < lhs.ptr)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
-template <class T>
-bool ArrayList<T>::operator>(const ArrayList<T> &lhs)
+    Iterator temp = it;
+
+    for (Iterator a = it; a < end(); a = next(a))
+    {
+
+        *a.sptr = *(next(a));
+    }
+
+    siz--;
+    return temp;
+}
+template <typename T>
+int ArrayList<T>::size()
 {
-    if (this->ptr > lhs.ptr)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return siz;
 }
