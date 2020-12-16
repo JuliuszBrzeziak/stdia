@@ -165,9 +165,8 @@ template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++(int)
 {
 
-    Iterator *i;
-    (*i).sptr = (*sptr).next;
-    return *i;
+    Iterator::sptr = sptr->next;
+    return *this;
 }
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator--(int)
@@ -187,7 +186,7 @@ typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++()
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator--()
 {
-    Iterator::sptr = sptr.prev;
+    this->sptr = sptr->prev;
     return *this;
 }
 
@@ -320,4 +319,15 @@ int PointerList<T>::size()
         ++w;
     }
     return w;
+}
+
+template <class T>
+typename PointerList<T>::Iterator PointerList<T>::erase(Iterator it)
+{
+    it = begin();
+    it++;
+    Iterator l = --it;
+    Iterator p = --it;
+    l.sptr->next = p.sptr;
+    p.sptr->prev = l.sptr;
 }
