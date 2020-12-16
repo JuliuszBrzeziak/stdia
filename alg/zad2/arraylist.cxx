@@ -11,11 +11,17 @@ int main()
     ArrayList<int> a;
     a.push_front(500);
     a.push_front(400);
+    a.push_front(400);
     a.push_front(300);
+
     a.push_front(200);
     a.push_front(100);
 
-    cout << "pop" << a.pop_front() << "size" << a.size();
+    for (const auto &aa : a)
+        std::cout
+            << "1=" << aa << std::endl;
+
+    cout << " << " << a.remove(400) << endl;
 
     for (const auto &aa : a)
         std::cout
@@ -48,13 +54,6 @@ int main()
     {
         cout << "EMPTY";
     }
-
-    a.pop_back();
-    a.pop_back();
-
-    a.pop_back();
-
-    a.pop_back();
 
     if (a.empty())
     {

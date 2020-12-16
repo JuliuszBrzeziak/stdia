@@ -9,7 +9,6 @@ public:
     int siz;
     T *ptr;
     int cap;
-    
 
     struct Iterator
     {
@@ -150,7 +149,7 @@ T ArrayList<T>::pop_back()
 {
     if (empty())
     {
-        throw runtime_error("list is empty!");
+        throw runtime_error("popbacklist is empty!");
     }
     T temp = *end()--;
 
@@ -336,7 +335,7 @@ T ArrayList<T>::pop_front()
 
     if (empty())
     {
-        throw runtime_error("list is empty!");
+        throw runtime_error("POPfront:list is empty!");
     }
 
     T temp = *begin();
@@ -383,4 +382,18 @@ typename ArrayList<T>::Iterator ArrayList<T>::find(const T &x)
             return i;
         }
     }
+    return end();
+}
+template <class T>
+int ArrayList<T>::remove(const T &x)
+{
+    int w = 0;
+    Iterator i = begin();
+
+    for (Iterator i = begin(); i < end(); i = find(x))
+    {
+        w++;
+        erase(i);
+    }
+    return --w;
 }
