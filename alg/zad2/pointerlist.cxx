@@ -21,6 +21,8 @@ int main()
     // j = p.pop_front();
     p.push_back(7);
     cout << p.size();
+    p.erase(p.find(3));
+    cout << "fi$$$$$$$nd" << p.test(p.find(7));
     if (p.empty() == false)
     {
         cout << "edlo";

@@ -228,7 +228,9 @@ typename PointerList<T>::Iterator PointerList<T>::end()
 template <class T>
 T PointerList<T>::test(PointerList<T>::Iterator it)
 {
-    return **it.sptr;
+    Node *temp = it.sptr;
+
+    return temp->data;
 }
 
 template <class T>
@@ -324,10 +326,21 @@ int PointerList<T>::size()
 template <class T>
 typename PointerList<T>::Iterator PointerList<T>::erase(Iterator it)
 {
-    it = begin();
-    it++;
-    Iterator l = --it;
-    Iterator p = --it;
-    l.sptr->next = p.sptr;
-    p.sptr->prev = l.sptr;
+    Iterator i = it--;
+    Iterator j = it++;
+}
+
+template <class T>
+typename PointerList<T>::Iterator PointerList<T>::find(const T &x)
+{
+    Iterator i = begin();
+    for (int j = 0; j <= size(); j++)
+    {
+        if (test(i) == x)
+        {
+            return i;
+        }
+        i++;
+    }
+    return end();
 }
