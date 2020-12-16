@@ -326,8 +326,11 @@ int PointerList<T>::size()
 template <class T>
 typename PointerList<T>::Iterator PointerList<T>::erase(Iterator it)
 {
-    Iterator i = it--;
-    Iterator j = it++;
+    Iterator l = it--;
+    it++;
+    Iterator r = it++;
+    l.sptr->next = r.sptr;
+    r.sptr->prev = l.sptr;
 }
 
 template <class T>
