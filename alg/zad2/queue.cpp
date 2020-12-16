@@ -17,26 +17,53 @@ int main()
      for (int i = 0; i < n; i++)
      {
           cin >> sn;
-          if (sn == "A")
+          if (sn == "B")
           {
                cin >> sn;
                array.push_back(stoi(sn));
           }
 
-          else if (sn == "D")
+          else if (sn == "b")
           {
-               if (array.size() == 0)
+               if (array.empty())
                {
-                    cout << "EMPTYyyy";
+                    cout << "EMPTY";
                }
                else
                {
                     cout << array.pop_back() << endl;
                }
           }
+          if (sn == "F")
+          {
+               cin >> sn;
+               array.push_front(stoi(sn));
+          }
+
+          else if (sn == "f")
+          {
+               if (array.empty())
+               {
+                    cout << "EMPTY";
+               }
+               else
+               {
+                    cout << array.pop_front() << endl;
+               }
+          }
           else if (sn == "S")
           {
                cout << array.size() << endl;
+          }
+
+          else if (sn == "R")
+          {
+               int x, y;
+               cin >> sn;
+               x = stoi(sn);
+               cin >> sn;
+
+               array.insert(array.erase(array.find(x)), stoi(sn));
           }
      }
 }

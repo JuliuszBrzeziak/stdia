@@ -9,6 +9,7 @@ public:
     int siz;
     T *ptr;
     int cap;
+    
 
     struct Iterator
     {
@@ -83,6 +84,7 @@ ArrayList<T>::ArrayList()
 
     ptr = new T[1000]{};
     cap = 1000;
+    siz = 0;
 }
 
 template <class T>
@@ -329,14 +331,20 @@ void ArrayList<T>::push_front(T &&x)
 
 template <class T>
 T ArrayList<T>::pop_front()
+
 {
+
+    if (empty())
+    {
+        throw runtime_error("list is empty!");
+    }
+
     T temp = *begin();
     Iterator a = begin();
 
     for (a; a < end(); ++a)
     {
         *a = *next(a);
-        cout << *a;
     }
 
     siz--;

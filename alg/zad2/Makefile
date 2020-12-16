@@ -8,6 +8,10 @@ array: clean
 	$(CC) arraylist.cxx -o arraylist.x -pedantic-errors
 	./arraylist.x
 
+pointer: clean
+	$(CC) pointerlist.cxx -o pointerlist.x -pedantic-errors
+	./pointerlist.x
+
 
 test: clean gen
 	$(CC) queue.cpp -o queue.x -Wall
