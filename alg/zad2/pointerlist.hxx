@@ -235,6 +235,11 @@ T PointerList<T>::test(PointerList<T>::Iterator it)
 template <class T>
 T PointerList<T>::pop_front()
 {
+    if (empty())
+    {
+        throw runtime_error("pop_front: list empty!");
+    }
+
     Iterator i;
     i.sptr = head.next;
     head = *head.next;
@@ -260,6 +265,12 @@ void PointerList<T>::push_front(T &&x)
 template <class T>
 T PointerList<T>::pop_back()
 {
+
+    if (empty())
+    {
+        throw runtime_error("pop_back: list empty!");
+    }
+
     Iterator i;
     i.sptr = tail.prev;
     T temp = i.sptr->data;
@@ -296,4 +307,17 @@ bool PointerList<T>::empty()
     {
         return false;
     }
+}
+
+template <class T>
+int PointerList<T>::size()
+{
+    Iterator i = begin();
+    int w = 0;
+    while (i != end())
+    {
+        i++;
+        ++w;
+    }
+    return w;
 }
