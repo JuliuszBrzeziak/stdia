@@ -281,14 +281,17 @@ T PointerList<T>::pop_back()
     return temp;
 }
 
-// template <class T>
-// T PointerList<T>::pop_back()
-// {
-//     Iterator i;
-//     i.sptr = tail.prev;
-//     Iterator j = i--;
-//     j.sptr->next = &tail;
-//     tail.prev = i.sptr;
+template <class T>
+void PointerList<T>::push_back(T &&x)
+{
 
-//     return i.sptr->data;
-// }
+    Node *i;
+    i = new Node;
+    Node *t;
+    t = tail.prev;
+    (*i).data = x;
+    (*i).prev = tail.prev;
+    tail.prev = i;
+    (*t).next = i;
+    (*i).next = &tail;
+}
