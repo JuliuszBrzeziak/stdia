@@ -368,3 +368,21 @@ typename PointerList<T>::Iterator PointerList<T>::insert(Iterator it, T &&x)
     r.sptr->prev = i;
     return *in;
 }
+
+template <class T>
+int PointerList<T>::remove(const T &x)
+{
+
+    Iterator i = begin();
+    int w = 0;
+    for (int j = 0; j <= size(); j++)
+    {
+        if (test(i) == x)
+        {
+            erase(i);
+            w++;
+        }
+        i++;
+    }
+    return w;
+}

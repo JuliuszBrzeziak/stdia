@@ -20,6 +20,11 @@ int main()
     // i = p.pop_front();
     // j = p.pop_front();
     p.push_back(7);
+    p.push_back(5);
+    p.push_back(5);
+    p.push_back(7);
+    cout << p.remove(5) << "<<";
+
     p.erase(p.insert(p.find(3), 7));
 
     cout << p.size();
