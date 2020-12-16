@@ -97,15 +97,15 @@ template <class T>
 T &PointerList<T>::Iterator::operator*()
 {
 
-    return *sptr.data;
+    return (*sptr).data;
 }
 
-// template <class T>
-// T &PointerList<T>::Node::operator*()
-// {
+template <class T>
+T &PointerList<T>::Node::operator*()
+{
 
-//     return *this;
-// }
+    return this->data;
+}
 /*
 template <class T>
 bool PointerList<T>::Iterator::operator<=(const Iterator &lhs)
@@ -163,10 +163,11 @@ bool PointerList<T>::Iterator::operator>=(const Iterator &lhs)
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++(int)
 {
-    Iterator::sptr = sptr.next;
-    return *this;
-}
 
+    Iterator *i;
+    (*i).sptr = (*sptr).next;
+    return *i;
+}
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator--(int)
 {
@@ -177,8 +178,10 @@ typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator--(int)
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++()
 {
-    Iterator::sptr = sptr.next;
-    return *this;
+
+    Iterator *i;
+    (*i).sptr = (*sptr).next;
+    return *i;
 }
 
 template <class T>
@@ -217,31 +220,19 @@ T PointerList<T>::pop_front()
 */
 
 template <class T>
-void PointerList<T>::push_front(T &&x)
-{
-    Node *newn;
-    newn = &head;
-    (*newn).data = x;
-    newn->next = head.next;
-    Node *newhead;
-    newhead = &head;
-    head.next = newn;
-}
-
-template <class T>
 typename PointerList<T>::Iterator PointerList<T>::begin()
 {
     Iterator i;
-    i.sptr = &head;
-    head.data = 100;
+    i.sptr = head.next;
     return i;
 }
 
 template <class T>
 typename PointerList<T>::Iterator PointerList<T>::end()
 {
-    Iterator::sptr = *tail;
-    return Iterator::sptr;
+    Iterator i;
+    i.sptr = &tail;
+    return i;
 }
 
 template <class T>
@@ -254,5 +245,44 @@ template <class T>
 T PointerList<T>::pop_front()
 {
     Node *n = head.next;
-    return n->data;
+    Iterator i;
+    i.sptr = head.next;
+
+
+    return **i.sptr;
+}
+
+template <class T>
+void PointerList<T>::push_front(T &&x)
+{
+    // Node *newn;
+    // newn = &head;
+    // (*newn).data = x;
+    // newn->next = head.next;
+
+    // Node *nhead;
+    // nhead = &head;
+    // head.next = newn;
+    // Node *newhead;
+    // newhead = &head;
+    // head.next = newn;
+
+    Node *i;
+    i = new Node;
+    Node *t;
+    t = head.next;
+    (*i).data = x;
+    (*i).next = head.next;
+    head.next = i;
+    (*t).prev = head.next;
+}
+
+template <class T>
+T PointerList<T>::pop_back()
+{
+    Node *n = tail.prev;
+    Iterator i;
+    i.sptr = tail.prev;
+
+    return **i.sptr;
 }
