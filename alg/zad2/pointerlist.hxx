@@ -246,6 +246,7 @@ T PointerList<T>::pop_front()
     Node *n = head.next;
     Iterator i;
     i.sptr = head.next;
+    head = *head.next;
 
     return **i.sptr;
 }
