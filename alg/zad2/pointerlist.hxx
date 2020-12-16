@@ -1,4 +1,4 @@
-
+#include <iostream>
 
 using namespace std;
 
@@ -209,17 +209,6 @@ template <class T>
 PointerList<T>::~PointerList()
 {
 }
-/*
-
-
-
-template <class T>
-T PointerList<T>::pop_front()
-{
-    Node *n = head.next;
-    return n->data;
-}
-*/
 
 template <class T>
 typename PointerList<T>::Iterator PointerList<T>::begin()
@@ -294,4 +283,17 @@ void PointerList<T>::push_back(T &&x)
     tail.prev = i;
     (*t).next = i;
     (*i).next = &tail;
+}
+
+template <class T>
+bool PointerList<T>::empty()
+{
+    if (tail.prev == &head && head.next == &tail)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
