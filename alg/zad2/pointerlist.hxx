@@ -253,17 +253,6 @@ T PointerList<T>::pop_front()
 template <class T>
 void PointerList<T>::push_front(T &&x)
 {
-    // Node *newn;
-    // newn = &head;
-    // (*newn).data = x;
-    // newn->next = head.next;
-
-    // Node *nhead;
-    // nhead = &head;
-    // head.next = newn;
-    // Node *newhead;
-    // newhead = &head;
-    // head.next = newn;
 
     Node *i;
     i = new Node;
