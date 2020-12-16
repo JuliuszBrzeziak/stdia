@@ -13,9 +13,7 @@ int main()
     p.push_front(3);
     int i, j;
 
-    // i = p.pop_front();
     i = p.pop_front();
-
     j = p.pop_back();
 
     for (const auto &aa : p)

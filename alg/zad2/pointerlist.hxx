@@ -14,7 +14,7 @@ public:
         T data;
         Node *prev;
         Node *next;
-        T &operator*();
+        Node &operator*();
     };
 
     Node head, tail;
@@ -101,11 +101,12 @@ T &PointerList<T>::Iterator::operator*()
 }
 
 template <class T>
-T &PointerList<T>::Node::operator*()
+typename PointerList<T>::Node &PointerList<T>::Node::operator*()
 {
 
-    return this->data;
+    return *this;
 }
+
 /*
 template <class T>
 bool PointerList<T>::Iterator::operator<=(const Iterator &lhs)
@@ -171,7 +172,7 @@ typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++(int)
 template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator--(int)
 {
-    Iterator::sptr = sptr.prev;
+    Iterator::sptr = sptr->prev;
     return *this;
 }
 
@@ -198,6 +199,8 @@ PointerList<T>::PointerList()
     siz = 0;
     head.prev = nullptr;
     head.next = &tail;
+    head.data = 9999;
+    tail.data = 9999;
     tail.next = nullptr;
     tail.prev = &head;
 }
@@ -268,10 +271,10 @@ void PointerList<T>::push_front(T &&x)
 template <class T>
 T PointerList<T>::pop_back()
 {
-
     Iterator i;
     i.sptr = tail.prev;
-    tail.next = nullptr;
+    Iterator j = i--;
+    j.sptr->next = &tail;
 
     return i.sptr->data;
 }
