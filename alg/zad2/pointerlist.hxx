@@ -179,9 +179,8 @@ template <class T>
 typename PointerList<T>::Iterator &PointerList<T>::Iterator::operator++()
 {
 
-    Iterator *i;
-    (*i).sptr = (*sptr).next;
-    return *i;
+    this->sptr = sptr->next;
+    return *this;
 }
 
 template <class T>
@@ -247,7 +246,6 @@ T PointerList<T>::pop_front()
     Node *n = head.next;
     Iterator i;
     i.sptr = head.next;
-
 
     return **i.sptr;
 }

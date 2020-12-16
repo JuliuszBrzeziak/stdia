@@ -16,9 +16,9 @@ int main()
     i = p.pop_front();
     j = p.pop_back();
 
-    // for (const auto &aa : p)
-    //     std::cout
-    //         << "foreach" << aa << std::endl;
+    for (const auto &aa : p)
+        std::cout
+            << "foreach" << aa << std::endl;
 
     cout
         << i << "   " << j << endl;
