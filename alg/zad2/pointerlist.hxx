@@ -331,6 +331,7 @@ typename PointerList<T>::Iterator PointerList<T>::erase(Iterator it)
     Iterator r = it++;
     l.sptr->next = r.sptr;
     r.sptr->prev = l.sptr;
+    return r;
 }
 
 template <class T>
