@@ -9,7 +9,7 @@ array: clean
 	./arraylist.x
 
 pointer: clean
-	$(CC) pointerlist.cxx -o pointerlist.x -pedantic-errors
+	$(CC) pointerlist.cxx -o pointerlist.x -Wall
 	./pointerlist.x
 
 

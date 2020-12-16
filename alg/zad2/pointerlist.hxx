@@ -243,12 +243,11 @@ T PointerList<T>::test(PointerList<T>::Iterator it)
 template <class T>
 T PointerList<T>::pop_front()
 {
-    Node *n = head.next;
     Iterator i;
     i.sptr = head.next;
     head = *head.next;
 
-    return **i.sptr;
+    return i.sptr->data;
 }
 
 template <class T>
@@ -262,15 +261,17 @@ void PointerList<T>::push_front(T &&x)
     (*i).data = x;
     (*i).next = head.next;
     head.next = i;
-    (*t).prev = head.next;
+    (*t).prev = i;
+    (*i).prev = &head;
 }
 
 template <class T>
 T PointerList<T>::pop_back()
 {
-    Node *n = tail.prev;
+
     Iterator i;
     i.sptr = tail.prev;
+    tail.next = nullptr;
 
-    return **i.sptr;
+    return i.sptr->data;
 }
