@@ -273,8 +273,22 @@ T PointerList<T>::pop_back()
 {
     Iterator i;
     i.sptr = tail.prev;
+    T temp = i.sptr->data;
     Iterator j = i--;
     j.sptr->next = &tail;
+    tail.prev = i.sptr;
 
-    return i.sptr->data;
+    return temp;
 }
+
+// template <class T>
+// T PointerList<T>::pop_back()
+// {
+//     Iterator i;
+//     i.sptr = tail.prev;
+//     Iterator j = i--;
+//     j.sptr->next = &tail;
+//     tail.prev = i.sptr;
+
+//     return i.sptr->data;
+// }
