@@ -20,7 +20,8 @@ int main()
     // i = p.pop_front();
     // j = p.pop_front();
     p.push_back(7);
-    p.erase(p.find(7));
+    p.erase(p.insert(p.find(3), 7));
+
     cout << p.size();
 
     cout << "fi$$$$$$$nd" << p.test(p.find(7));

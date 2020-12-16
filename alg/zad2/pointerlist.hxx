@@ -348,3 +348,23 @@ typename PointerList<T>::Iterator PointerList<T>::find(const T &x)
     }
     return end();
 }
+
+template <class T>
+typename PointerList<T>::Iterator PointerList<T>::insert(Iterator it, T &&x)
+{
+    Iterator l = it--;
+
+    it++;
+    Iterator r = it++;
+    Node *i;
+    i = new Node;
+    Iterator *in;
+    in = new Iterator;
+    in->sptr = i;
+    i->data = x;
+    i->prev = l.sptr;
+    i->next = r.sptr;
+    l.sptr->next = i;
+    r.sptr->prev = i;
+    return *in;
+}
