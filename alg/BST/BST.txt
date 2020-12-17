@@ -6,13 +6,12 @@ Binarne drzewo poszukiwań (ang. Binary Search Tree, BST) – dynamiczna struktu
 
 Koszt wykonania podstawowych operacji w drzewie BST (wstawienie, wyszukanie, usunięcie węzła)
  jest proporcjonalny do wysokości drzewa h , ponieważ operacje wykonywane są wzdłuż drzewa.
-  Fakt ten w notacji Landaua zapisuje się O ( h ) . {\displaystyle \mathrm {O} (h).} {\displaystyle \mathrm {O} (h).}
-   Jeżeli drzewo jest zrównoważone, to jego wysokość bliska jest logarytmowi dwójkowemu liczby węzłów 
-   ( h ≈ log 2 ⁡ ( n ) ) , {\displaystyle (h\approx \log _{2}(n)),} (h\approx \log _{2}(n)),
+  Fakt ten w notacji Landaua zapisuje się O ( h ) .
+   Jeżeli drzewo jest zrównoważone, to jego wysokość bliska jest logarytmowi dwójkowemu liczby węzłów ( h ≈ log 2 ⁡ ( n ) ) , 
     zatem dla drzewa o n n węzłach optymistyczny koszt każdej z podstawowych operacji wynosi O ( log ⁡ n ) .
      {\displaystyle \mathrm {O} (\log n).} {\displaystyle \mathrm {O} (\log n).} 
      Z drugiej strony drzewo skrajnie niezrównoważone ma wysokość porównywalną z liczbą węzłów
-      (w skrajnym przypadku drzewa zdegenerowanego do listy wartości te są równe: h = n {\displaystyle h=n} {\displaystyle h=n}),
+      (w skrajnym przypadku drzewa zdegenerowanego do listy wartości te są równe: h = n ),
        z tego powodu koszt pesymistyczny wzrasta do O ( n ) . {\displaystyle \mathrm {O} (n).} {\displaystyle \mathrm {O} (n).}
 
 Przechodząc drzewo metodą in-order, uzyskuje się ciąg wartości kluczy posortowanych niemalejąco[1].
@@ -23,15 +22,10 @@ na przykład różnego rodzaju słowniki, kolejki priorytetowe[1].
 
     operacje na bst:
 
-        budowa in-order:
-
 
         wstawienie:
 
 
         wyszukanie:
-
-
-        usunięcie węzła:
 
 
