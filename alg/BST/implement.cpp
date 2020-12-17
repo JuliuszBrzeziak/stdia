@@ -71,15 +71,18 @@ int main()
 {
     BST b, *root = NULL;
     root = b.Insert(root, 50);
+
+
     b.Insert(root, 30);
     b.Insert(root, 20);
     b.Insert(root, 40);
     b.Insert(root, 70);
-    b.Insert(root, 30);
-
+    b.Insert(root, 0);
     b.Insert(root, 60);
     b.Insert(root, 80);
-    cout << b.find(root, 30);
+
+    
+    cout << b.find(root, 0);
 
     return 0;
 }
