@@ -205,6 +205,28 @@ PointerList<T>::PointerList()
 }
 
 template <class T>
+PointerList<T>::PointerList(const PointerList &source)
+{
+    if (!source.empty())
+    {
+        siz = source.siz;
+        cap = source.cap;
+
+        head = source.head;
+        tail = source.tail;
+    }
+}
+
+template <class T>
+PointerList<T>::PointerList(PointerList &&source)
+{
+    siz = source.siz;
+    cap = source.cap;
+    *head = &source.head;
+    *tail = &source.tail;
+}
+
+template <class T>
 PointerList<T>::~PointerList()
 {
 }

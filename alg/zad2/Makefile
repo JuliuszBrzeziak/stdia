@@ -4,6 +4,21 @@ DEPS = stack.hpp
 
 
 
+CXX=g++
+CFLAGS=-Wall -std=c++14
+
+TEST=cursorlist.cxx
+EXECUTABLE=$(TEST:.cpp=)
+
+cursor:
+	$(CC) cursorlist2.cxx -o cursorlist.x -pedantic-errors
+	./cursorlist.x
+
+clean:
+	rm $(EXECUTABLE)
+
+
+
 array: clean
 	$(CC) arraylist.cxx -o arraylist.x -pedantic-errors
 	./arraylist.x
