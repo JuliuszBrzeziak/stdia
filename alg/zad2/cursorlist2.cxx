@@ -25,26 +25,25 @@ int main()
 
     CursorList<int> li;
     // li.Prepend(11);
+    li.push_front(0);
     li.push_front(1);
     li.push_front(2);
     li.push_front(3);
-    li.push_front(44);
 
-    li.push_back(66);
-    li.push_back(88);
-    li.push_front(7);
+    li.push_back(4);
+    li.push_back(5);
+    // li.push_front(7);
+    li.Traverse();
+
+    int p = li.pop_front();
+    int b = li.pop_front();
+    li.push_front(3);
+    b = li.pop_front();
 
     li.Traverse();
-    cout << li.arr[0].Data << li.arr[1].Data << li.arr[2].Data << li.arr[3].Data << endl;
 
-    // CursorList<float> lf;
-    // lf.Prepend(dataFloat[0]);
-    // lf.Append(dataFloat[1]);
-    // lf.Append(dataFloat[2]);
-    // lf.Prepend(dataFloat[3]);
-    // lf.Append(dataFloat[4]);
-    // lf.Prepend(dataFloat[5]);
-    // lf.Traverse(PrintFloat);
+    cout << "<<<" << p << "<<<"
+         << "<<<" << b << "<<<" << endl;
 
     return 0;
 }

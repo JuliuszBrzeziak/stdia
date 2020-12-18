@@ -222,3 +222,22 @@ void CursorList<T>::Traverse()
 
     std::cout << "tran" << h << "i=" << tail << std::endl;
 }
+
+template <typename T>
+T CursorList<T>::pop_front()
+{
+
+    if (empty())
+    {
+        throw runtime_error("pop:empty");
+    }
+
+    T temp = arr[head].Data;
+    int n = arr[head].next;
+    arr[head].next = spare;
+    spare = head;
+    head = n;
+
+    size--;
+    return temp;
+}
