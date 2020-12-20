@@ -36,14 +36,14 @@ BST *BST ::Insert(BST *root, int value)
         return new BST(value);
     }
 
-    if (value > root->key)
+    if (value < root->key)
     {
-        root->right = Insert(root->right, value);
+        root->left = Insert(root->left, value);
     }
 
     else
     {
-        root->left = Insert(root->left, value);
+        root->right = Insert(root->right, value);
     }
 
     return root;
@@ -56,14 +56,14 @@ int BST::find(BST *root, int i)
         return root->key;
     }
 
-    if (i > root->key)
+    if (i < root->key)
     {
-        return find(root->right, i);
+        return find(root->left, i);
     }
 
     else
     {
-        return find(root->left, i);
+        return find(root->right, i);
     }
 }
 
@@ -71,7 +71,6 @@ int main()
 {
     BST b, *root = NULL;
     root = b.Insert(root, 50);
-
 
     b.Insert(root, 30);
     b.Insert(root, 20);
@@ -81,7 +80,6 @@ int main()
     b.Insert(root, 60);
     b.Insert(root, 80);
 
-    
     cout << b.find(root, 0);
 
     return 0;

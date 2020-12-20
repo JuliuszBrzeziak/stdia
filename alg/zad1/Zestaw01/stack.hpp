@@ -24,7 +24,6 @@ public:
 	T &top();
 	Stack &operator=(const Stack &S)
 	{
-		cout << "Ocoppy";
 		tab = S.tab;
 		Size = S.Size;
 		height = S.height;
@@ -32,7 +31,6 @@ public:
 	};
 	Stack &operator=(Stack &&S)
 	{
-		cout << "Omove";
 		tab = S.tab;
 		Size = S.Size;
 		height = S.height;

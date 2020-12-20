@@ -6,6 +6,12 @@
         "list": "cpp",
         "tuple": "cpp",
         "stop_token": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "typeindex": "cpp",
+        "atomic": "cpp",
+        "hash_map": "cpp",
+        "chrono": "cpp",
+        "iterator": "cpp",
+        "ranges": "cpp"
     }
 }

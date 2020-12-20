@@ -24,7 +24,10 @@ public:
 
     struct Iterator
     {
-        Node *sptr;
+
+        Node *arr;
+        Node *ptr;
+        int si;
         bool operator==(const Iterator &lhs);
         bool operator!=(const Iterator &lhs);
         bool operator<=(const Iterator &lhs);
@@ -35,10 +38,16 @@ public:
         Iterator &operator++();
         Iterator &operator++(int);
 
-        Iterator &operator--();
-        Iterator &operator--(int);
+        // Iterator &operator--();
+        // Iterator &operator--(int);
 
         T &operator*();
+
+        Iterator(Node *aNext, int aData)
+            : si(aData), arr(aNext)
+        {
+            ptr = &arr[aData];
+        }
     };
 
     CursorList();
@@ -68,12 +77,12 @@ public:
     int remove(const T &x); //Usuwa wystąpienia x i zwraca ich liczbę
     int Size();             // zwraca liczę el w liście
     bool empty();           //zwraca true jeśli pusta
-    int begin();            //zwraca iterator na pierwszy el
-    int end();              //zwraca iterator na koniec
+    Iterator begin();       //zwraca iterator na pierwszy el
+    Iterator end();         //zwraca iterator na koniec
     T get(int);
 
-    int &operator++();
-    int &operator--();
+    Iterator &operator++();
+    Iterator &operator--();
     T &operator*();
 
     T test(int it);
@@ -87,17 +96,49 @@ public:
 };
 
 template <class T>
+bool CursorList<T>::Iterator::operator==(const Iterator &lhs)
+{
+    return lhs.ptr == this->ptr;
+}
+
+template <class T>
+bool CursorList<T>::Iterator::operator!=(const Iterator &lhs)
+{
+    return lhs.ptr != this->ptr;
+}
+
+template <class T>
+T &CursorList<T>::Iterator::operator*()
+{
+
+    return ptr->Data;
+}
+
+template <class T>
+typename CursorList<T>::Iterator CursorList<T>::begin()
+{
+    Iterator it2 = Iterator(arr, tail);
+    return it2;
+}
+
+template <class T>
+typename CursorList<T>::Iterator CursorList<T>::end()
+{
+    Iterator it2 = Iterator(arr, head);
+    return it2;
+}
+
+template <class T>
 CursorList<T>::CursorList()
 {
     arr = new Node[cap];
     head = 0;
     tail = 0;
     size = 0;
-    for (int i = 0; i < cap; i++)
+    Iterator it = Iterator(arr, 0);
+    for (int i = 0; i < cap; ++i)
     {
-        // arr[arr[i].next].Data = i;
-        arr[i].next = i + 1;
-        arr[i].next;
+        arr[i].next = i;
     }
 }
 
@@ -166,14 +207,64 @@ void CursorList<T>::push_front(T &&aData)
         if (spare != cap)
         {
 
+            // Iterator it = Iterator(arr, spare);
+
             arr[spare].Data = aData;
-            int s = arr[spare].next;
             arr[spare].next = head;
             head = spare;
-            spare = s;
+            spare = arr[head].next;
             size++;
+
+            // int s = arr[spare].next;
+            // arr[spare].next = head;
+            // head = spare;
+            // spare = s;
         }
     }
+}
+
+template <class T>
+typename CursorList<T>::Node &CursorList<T>::Node::operator*()
+{
+
+    this->Data = arr[next].Data;
+    this->next = arr[next].next;
+    return *this;
+}
+
+template <typename T>
+void CursorList<T>::Traverse()
+{
+    for (Iterator i = end(); i != begin(); ++i)
+    {
+        int h = i.ptr->Data;
+        ;
+        std::cout << "tran" << h << "i=" << i.si << std::endl;
+    }
+    // int h = arr[tail].Data;
+
+    std::cout << "tran" << head << "i=" << tail << std::endl;
+}
+
+template <typename T>
+T CursorList<T>::pop_front()
+{
+
+    if (empty())
+    {
+        throw runtime_error("pop:empty");
+    }
+
+    T temp = arr[head].Data;
+    int sp = spare;
+    spare = head;
+    head = arr[head].next;
+    arr[spare].next = sp;
+
+
+    cout << temp << "<<";
+
+    return temp;
 }
 
 template <typename T>
@@ -185,7 +276,7 @@ void CursorList<T>::push_back(T &&aData)
         tail = 0;
         spare = 1;
         size += 1;
-        arr[0].Data = aData;
+        ;
     }
 
     else
@@ -203,28 +294,8 @@ void CursorList<T>::push_back(T &&aData)
     }
 }
 
-template <class T>
-typename CursorList<T>::Node &CursorList<T>::Node::operator*()
-{
-
-    return *this;
-}
-
 template <typename T>
-void CursorList<T>::Traverse()
-{
-    for (int i = head; i != tail; i = arr[i].next)
-    {
-        int h = arr[i].Data;
-        std::cout << "tran" << h << "i=" << i << std::endl;
-    }
-    int h = arr[tail].Data;
-
-    std::cout << "tran" << h << "i=" << tail << std::endl;
-}
-
-template <typename T>
-T CursorList<T>::pop_front()
+T CursorList<T>::pop_back()
 {
 
     if (empty())
@@ -232,12 +303,37 @@ T CursorList<T>::pop_front()
         throw runtime_error("pop:empty");
     }
 
-    T temp = arr[head].Data;
-    int n = arr[head].next;
-    arr[head].next = spare;
-    spare = head;
-    head = n;
+    Iterator it = Iterator(arr, tail);
+
+    T temp = *it;
+
+    cout << temp << "<<<<" << endl;
+
+    int s = arr[tail].next;
+    arr[tail].next = spare;
+    spare = tail;
+    tail = s;
 
     size--;
     return temp;
+}
+
+template <class T>
+typename CursorList<T>::Iterator &CursorList<T>::Iterator::operator++(int)
+{
+
+    // ptr = &arr[ptr->next];
+    ptr = arr++;
+
+    si = ptr->next - si;
+    return *this;
+}
+
+template <class T>
+typename CursorList<T>::Iterator &CursorList<T>::Iterator::operator++()
+{
+    // this->s = s2;
+    ptr = arr++;
+    si = ptr->next - si;
+    return *this;
 }

@@ -1,8 +1,15 @@
     definicja bst:
+
+
+    drzewo binarne jest to struktura danych w której każdy element zawiera wartości swojego klucza oraz wskaźniki na swoje dzieci
+  
+    wysokości drzewa jest to długość danego drzewa
+
 01 Binarne drzewo poszukiwań (ang. Binary Search Tree, BST) – dynamiczna struktura danych będąca drzewem binarnym,
  w którym lewe poddrzewo każdego węzła zawiera wyłącznie elementy o kluczach mniejszych niż klucz węzła
-  a prawe poddrzewo zawiera wyłącznie elementy o kluczach nie mniejszych niż klucz węzła
+  a prawe poddrzewo zawiera wyłącznie elementy o kluczach większy równych niż klucz węzła
    Węzły, oprócz klucza, przechowują wskaźniki na swojego lewego i prawego syna oraz na swojego ojca.
+
 
 
 2
@@ -18,10 +25,12 @@ jeżeli wstawiany klucz jest mniejszy od danego węzła rozpatrz wstawienie dla 
 4
 jeżeli jest niemniejszy to wstaw w prawego syna
 
-
 5
 BST to nasze węzły 
 BST zawiera swój klucz, czasem dodatkową zmienną i dwa wskaźniki na lewego i prawego syna
+
+
+
 
 6
 metoda jako argument bierze root i klucz

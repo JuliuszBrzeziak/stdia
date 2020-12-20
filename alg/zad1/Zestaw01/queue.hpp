@@ -17,7 +17,6 @@ public:
     ~Queue();
     Queue &operator=(const Queue &S)
     {
-        cout << "Ocoppy";
         tab = S.tab;
         q_size = S.q_size;
         head = S.head;
@@ -26,7 +25,6 @@ public:
     };
     Queue &operator=(Queue &&S)
     {
-        cout << "Omove";
         tab = S.tab;
         q_size = S.q_size;
         head = S.head;
