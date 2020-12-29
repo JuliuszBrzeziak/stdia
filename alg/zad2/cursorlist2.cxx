@@ -1,33 +1,22 @@
 #include "cursorlist.hxx"
 #include <iostream>
+#include <string>
 
 using namespace std;
-// template <typename T>
-// void Print(T aData, bool aBreakline)
-// {
-//     std::cout << aData << ((aBreakline) ? "->" : "\n");
-// }
-
-// void PrintInt(CursorList<int>::Node *aNode)
-// {
-//     Print(aNode->Data, aNode->next);
-// }
-
-// void PrintFloat(CursorList<float>::Node *aNode)
-// {
-//     Print(aNode->Data, aNode->next);
-// }
 
 int main()
 {
 
     CursorList<int> li;
+
     // li.Prepend(11);
     li.push_front(69);
     li.push_front(3);
     li.push_front(2);
     li.push_front(88);
     li.push_front(33);
+    cout << "tu " << endl;
+
 
     li.push_front(22);
 
