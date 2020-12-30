@@ -23,15 +23,35 @@ int main()
     li.push_front(111111);
     li.push_back(999999);
 
-    // li.erase(li.find(223));
-    li.insert(li.erase(li.find(3)), 69);
+    for (const auto &aa : li)
+        std::cout
+            << "foreach" << aa << std::endl;
+
+    li.erase(li.find(987));
+    // li.insert(li.erase(li.find(3)), 69);
+    for (const auto &bb : li)
+        std::cout
+            << "foreach2" << bb << std::endl;
 
     // li.push_back(555);
     // li.push_back(9877);
 
     cout << li.remove(4);
 
-    li.Traverse();
+    CursorList<int> li2;
+
+    // li2.Prepend(11);
+    li2.push_front(1);
+    li2.push_front(2);
+    li2.push_front(3);
+    li2.push_front(4);
+    li2.push_front(4);
+
+    // li2.Traverse();
+
+    for (const auto &cc : li2)
+        std::cout
+            << "wrk" << cc << std::endl;
 
     cout << "tu " << endl;
 

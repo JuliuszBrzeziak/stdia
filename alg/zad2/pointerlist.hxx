@@ -317,6 +317,7 @@ void PointerList<T>::push_back(T &&x)
     tail.prev = i;
     (*t).next = i;
     (*i).next = &tail;
+    tail.next = nullptr;
 }
 
 template <class T>
@@ -395,16 +396,16 @@ template <class T>
 int PointerList<T>::remove(const T &x)
 {
 
-    Iterator i = begin();
     int w = 0;
-    for (int j = 0; j <= size(); j++)
+    Iterator i = begin();
+
+    for (Iterator i = begin(); i != end(); i = find(x))
     {
-        if (test(i) == x)
-        {
-            erase(i);
-            w++;
-        }
-        i++;
+        cout << "qwertyu" << endl;
+
+        w++;
+        erase(i);
     }
-    return w;
+    cout << "KONIEC" << endl;
+    return --w;
 }

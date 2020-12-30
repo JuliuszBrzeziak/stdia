@@ -139,7 +139,8 @@ typename CursorList<T>::Iterator CursorList<T>::begin()
 template <class T>
 typename CursorList<T>::Iterator CursorList<T>::end()
 {
-    Iterator it2 = Iterator(arr, tail);
+    Iterator it2 = Iterator(arr, spare);
+
     return it2;
 }
 
@@ -212,6 +213,8 @@ void CursorList<T>::push_front(T &&aData)
 
             head = spare;
             spare = temp;
+            arr[tail].next = spare;
+
             size++;
         }
     }
@@ -277,10 +280,14 @@ void CursorList<T>::push_back(T &&aData)
         {
 
             arr[spare].Data = aData;
-            int s = arr[spare].next;
             arr[tail].next = spare;
+
+            int s = arr[spare].next;
+
             tail = spare;
             spare = s;
+            arr[tail].next = spare;
+
             size++;
         }
     }
@@ -327,6 +334,7 @@ typename CursorList<T>::Iterator &CursorList<T>::Iterator::operator++(int)
 template <class T>
 typename CursorList<T>::Iterator &CursorList<T>::Iterator::operator++()
 {
+
     a = arr[a].next;
     return *this;
 }
@@ -342,14 +350,17 @@ typename CursorList<T>::Iterator CursorList<T>::find(const T &x)
         }
     }
 
-    Iterator i2 = Iterator(arr, spare);
-    return i2;
+    return end();
     // throw runtime_error("not find");
 }
 
 template <class T>
 typename CursorList<T>::Iterator CursorList<T>::erase(Iterator t)
 {
+    if (t == end())
+    {
+        return end();
+    }
     Iterator it2 = Iterator(arr, head);
     Iterator it3 = Iterator(arr, head);
 
@@ -370,6 +381,11 @@ typename CursorList<T>::Iterator CursorList<T>::erase(Iterator t)
 template <class T>
 typename CursorList<T>::Iterator CursorList<T>::insert(Iterator it, T &&x)
 {
+
+    if (it == end())
+    {
+        return end();
+    }
 
     Iterator it2 = Iterator(arr, head);
     Iterator it3 = Iterator(arr, head);
@@ -395,7 +411,7 @@ int CursorList<T>::remove(const T &x)
     int w = 0;
     Iterator i = begin();
 
-    for (Iterator i = begin(); i.a != spare; i = find(x))
+    for (Iterator i = begin(); i != end(); i = find(x))
     {
         cout << "qwertyu" << endl;
 

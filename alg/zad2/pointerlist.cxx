@@ -32,7 +32,7 @@ int main()
     cout << "fi$$$$$$$nd" << p.test(p.find(7));
     if (p.empty() == false)
     {
-        cout << "edlo";
+        cout << "edlo" << endl;
     }
     for (const auto &aa : p)
         std::cout
