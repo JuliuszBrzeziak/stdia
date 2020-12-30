@@ -87,7 +87,7 @@ public:
 
     Iterator erase(Iterator t); //usuwa el i zwraca iter do kolejnego ele
 
-    int insert(int it, T &&x); // wstawia x przed poz it i zwraca pozycję x
+    Iterator insert(Iterator it, T &&x); // wstawia x przed poz it i zwraca pozycję x
 
     int remove(const T &x); //Usuwa wystąpienia x i zwraca ich liczbę
     int Size();             // zwraca liczę el w liście
@@ -362,4 +362,27 @@ typename CursorList<T>::Iterator CursorList<T>::erase(Iterator t)
     ++it2;
     --size;
     return it2;
+}
+
+// wstawia x przed poz it i zwraca pozycję x
+template <class T>
+typename CursorList<T>::Iterator CursorList<T>::insert(Iterator it, T &&x)
+{
+
+    Iterator it2 = Iterator(arr, head);
+    Iterator it3 = Iterator(arr, head);
+
+    while (it2 != it)
+    {
+        it3 = it2;
+
+        ++it2;
+    }
+    int temp = spare;
+    arr[spare].Data = x;
+    spare = arr[spare].next;
+    arr[it3.a].next = temp;
+    arr[temp].next = it2.a;
+    size++;
+    return it3;
 }

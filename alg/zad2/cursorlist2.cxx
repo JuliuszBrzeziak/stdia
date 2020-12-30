@@ -22,7 +22,7 @@ int main()
     li.push_back(999999);
 
     li.erase(li.find(2));
-    li.erase(li.find(3));
+    li.insert(li.erase(li.find(3)), 69);
 
     // li.push_back(555);
     // li.push_back(9877);
