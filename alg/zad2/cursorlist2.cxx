@@ -14,6 +14,8 @@ int main()
     li.push_front(2);
     li.push_front(3);
     li.push_front(4);
+    li.push_front(4);
+
     li.push_back(987);
     li.push_front(1234);
     li.push_back(567);
@@ -21,11 +23,13 @@ int main()
     li.push_front(111111);
     li.push_back(999999);
 
-    li.erase(li.find(2));
+    // li.erase(li.find(223));
     li.insert(li.erase(li.find(3)), 69);
 
     // li.push_back(555);
     // li.push_back(9877);
+
+    cout << li.remove(4);
 
     li.Traverse();
 

@@ -342,6 +342,8 @@ typename CursorList<T>::Iterator CursorList<T>::find(const T &x)
         }
     }
 
+    Iterator i2 = Iterator(arr, spare);
+    return i2;
     // throw runtime_error("not find");
 }
 
@@ -385,4 +387,21 @@ typename CursorList<T>::Iterator CursorList<T>::insert(Iterator it, T &&x)
     arr[temp].next = it2.a;
     size++;
     return it3;
+}
+
+template <class T>
+int CursorList<T>::remove(const T &x)
+{
+    int w = 0;
+    Iterator i = begin();
+
+    for (Iterator i = begin(); i.a != spare; i = find(x))
+    {
+        cout << "qwertyu" << endl;
+
+        w++;
+        erase(i);
+    }
+    cout << "KONIEC" << endl;
+    return --w;
 }
