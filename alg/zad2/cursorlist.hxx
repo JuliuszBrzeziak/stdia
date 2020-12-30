@@ -83,7 +83,7 @@ public:
     void push_back(T &&x); //wstawia el na koniec
     T pop_back();          // usuwa el z końca i zwraca wartość lub wyjątek jeśli pusta
 
-    int find(const T &x); //wyszukuje el o wart x i zwraca jego poz
+    Iterator find(const T &x); //wyszukuje el o wart x i zwraca jego poz
 
     int erase(int it); //usuwa el i zwraca iter do kolejnego ele
 
@@ -237,6 +237,7 @@ void CursorList<T>::Traverse()
 
     Iterator i = end();
     cout << "last" << *i << endl;
+    cout << "find" << *find(77) << endl;
 }
 
 template <typename T>
@@ -297,7 +298,6 @@ T CursorList<T>::pop_back()
     Iterator it2 = Iterator(arr, head);
     Iterator it3 = Iterator(arr, head);
 
-
     while (it2 != end())
     {
         it3 = it2;
@@ -328,4 +328,18 @@ typename CursorList<T>::Iterator &CursorList<T>::Iterator::operator++()
 {
     a = arr[a].next;
     return *this;
+}
+
+template <class T>
+typename CursorList<T>::Iterator CursorList<T>::find(const T &x)
+{
+    for (Iterator i = Iterator(arr, head); i != end(); i++)
+    {
+        if (*i == x)
+        {
+            return i;
+        }
+    }
+
+    throw runtime_error("not find");
 }
