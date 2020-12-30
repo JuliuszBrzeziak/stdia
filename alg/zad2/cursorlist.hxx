@@ -297,10 +297,6 @@ T CursorList<T>::pop_back()
     Iterator it2 = Iterator(arr, head);
     Iterator it3 = Iterator(arr, head);
 
-    for (int i = 0; i < size - 1; ++i)
-    {
-        ++it2;
-    }
 
     while (it2 != end())
     {
@@ -309,23 +305,13 @@ T CursorList<T>::pop_back()
         ++it2;
     }
 
-    cout << *it3 << "przedostatni" << endl;
-
     T temp = *it2;
-
-    cout << temp << "<<<<" << endl;
 
     arr[it2.a].next = spare;
     spare = it2.a;
     tail = it3.a;
     size--;
 
-    // int s = arr[tail].next;
-    // arr[tail].next = spare;
-    // spare = tail;
-    // tail = s;
-
-    // size--;
     return temp;
 }
 
