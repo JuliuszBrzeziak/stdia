@@ -170,23 +170,6 @@ bool CursorList<T>::empty()
     }
 }
 
-// template <class T>
-// CursorList<T>::CursorList(const CursorList &source)
-// {
-//     if (!source.isEmpty())
-//     {
-//         size = source.size;
-//         cap = source.cap;
-//         spare = source.spare;
-
-//         arr = new *Node();
-//         for (int i = 0; i < size; i += 1)
-//         {
-//             arr[i] = source.arr[i];
-//         }
-//     }
-// }
-
 template <class T>
 CursorList<T>::CursorList(CursorList &&source)
 {
@@ -223,8 +206,6 @@ void CursorList<T>::push_front(T &&aData)
         if (spare != cap)
         {
 
-            // Iterator it = Iterator(arr, spare);
-
             arr[spare].Data = aData;
             int temp = arr[spare].next;
             arr[spare].next = head;
@@ -232,31 +213,15 @@ void CursorList<T>::push_front(T &&aData)
             head = spare;
             spare = temp;
             size++;
-
-            // arr[spare].Data = aData;
-            // int s = arr[spare].next;
-            // arr[tail].next = spare;
-            // tail = spare;
-            // spare = s;
-            // size++;
         }
     }
 }
-
-// template <class T>
-// typename CursorList<T>::Node &CursorList<T>::Node::operator*()
-// {
-
-//     this->Data = arr[next].Data;
-//     this->next = arr[next].next;
-//     return *this;
-// }
 
 template <typename T>
 void CursorList<T>::Traverse()
 {
 
-    for (int a = 0; a <= 5; a++)
+    for (int a = 0; a <= 7; a++)
     {
         cout << "arr[" << a << "].Data=" << arr[a].Data << "    arr[" << a << "].next=" << arr[a].next << endl;
     }
@@ -267,9 +232,11 @@ void CursorList<T>::Traverse()
     int h;
     for (Iterator i = begin(); i != end(); ++i)
     {
-        h = *i;
-        std::cout << "tran" << h << "i=" << i.si << std::endl;
+        std::cout << "tran" << *i << endl;
     }
+
+    Iterator i = end();
+    cout << "last" << *i << endl;
 }
 
 template <typename T>
@@ -286,8 +253,6 @@ T CursorList<T>::pop_front()
     spare = head;
     head = arr[head].next;
     arr[spare].next = sp;
-
-    cout << temp << "<<";
 
     return temp;
 }
@@ -329,17 +294,38 @@ T CursorList<T>::pop_back()
     }
 
     Iterator it = Iterator(arr, tail);
+    Iterator it2 = Iterator(arr, head);
+    Iterator it3 = Iterator(arr, head);
 
-    T temp = *it;
+    for (int i = 0; i < size - 1; ++i)
+    {
+        ++it2;
+    }
+
+    while (it2 != end())
+    {
+        it3 = it2;
+
+        ++it2;
+    }
+
+    cout << *it3 << "przedostatni" << endl;
+
+    T temp = *it2;
 
     cout << temp << "<<<<" << endl;
 
-    int s = arr[tail].next;
-    arr[tail].next = spare;
-    spare = tail;
-    tail = s;
-
+    arr[it2.a].next = spare;
+    spare = it2.a;
+    tail = it3.a;
     size--;
+
+    // int s = arr[tail].next;
+    // arr[tail].next = spare;
+    // spare = tail;
+    // tail = s;
+
+    // size--;
     return temp;
 }
 
