@@ -17,9 +17,12 @@ int main()
     li.push_back(987);
     li.push_front(1234);
     li.push_back(567);
-    cout << li.pop_front() << "  " << li.pop_front() << "  " << li.pop_back() << "  " << li.pop_back() << "  " << endl;
+    // cout << li.pop_front() << "  " << li.pop_front() << "  " << li.pop_back() << "  " << li.pop_back() << "  " << endl;s
     li.push_front(111111);
     li.push_back(999999);
+
+    li.erase(li.find(2));
+    li.erase(li.find(3));
 
     // li.push_back(555);
     // li.push_back(9877);

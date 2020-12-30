@@ -85,7 +85,7 @@ public:
 
     Iterator find(const T &x); //wyszukuje el o wart x i zwraca jego poz
 
-    int erase(int it); //usuwa el i zwraca iter do kolejnego ele
+    Iterator erase(Iterator t); //usuwa el i zwraca iter do kolejnego ele
 
     int insert(int it, T &&x); // wstawia x przed poz it i zwraca pozycję x
 
@@ -254,6 +254,7 @@ T CursorList<T>::pop_front()
     spare = head;
     head = arr[head].next;
     arr[spare].next = sp;
+    --size;
 
     return temp;
 }
@@ -341,5 +342,24 @@ typename CursorList<T>::Iterator CursorList<T>::find(const T &x)
         }
     }
 
-    throw runtime_error("not find");
+    // throw runtime_error("not find");
+}
+
+template <class T>
+typename CursorList<T>::Iterator CursorList<T>::erase(Iterator t)
+{
+    Iterator it2 = Iterator(arr, head);
+    Iterator it3 = Iterator(arr, head);
+
+    while (it2 != t)
+    {
+        it3 = it2;
+
+        ++it2;
+    }
+
+    arr[it3.a].next = arr[it2.a].next;
+    ++it2;
+    --size;
+    return it2;
 }
