@@ -10,17 +10,17 @@ int main()
     CursorList<int> li;
 
     // li.Prepend(11);
-    li.push_front(69);
-    li.push_front(3);
+    li.push_front(1);
     li.push_front(2);
-    li.push_front(88);
-    li.push_front(33);
-    cout << "tu " << endl;
-
-
-    li.push_front(22);
+    li.push_front(3);
+    li.push_front(4);
+    // li.push_back(4);
+    // li.push_back(555);
+    // li.push_back(9877);
 
     li.Traverse();
+
+    cout << "tu " << endl;
 
     cout << "tu " << endl;
 
