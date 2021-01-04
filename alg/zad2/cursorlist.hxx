@@ -24,8 +24,6 @@ public:
     {
 
         Node *arr;
-        int p;
-        int si;
 
         int a;
         int nexti;
@@ -50,11 +48,7 @@ public:
             a = 0;
         };
 
-        Iterator()
-        {
-            p = 0;
-            si = 0;
-        };
+        Iterator(){};
 
         Iterator(Node *ar, int pos)
         {
@@ -119,7 +113,14 @@ bool CursorList<T>::Iterator::operator==(const Iterator &lhs)
 template <class T>
 bool CursorList<T>::Iterator::operator!=(const Iterator &lhs)
 {
-    return lhs.a != this->a;
+    if (lhs.a == this->a)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 template <class T>
@@ -171,17 +172,29 @@ bool CursorList<T>::empty()
     }
 }
 
+//move
 template <class T>
 CursorList<T>::CursorList(CursorList &&source)
+{
+    size = source.size;
+    cap = source.cap;
+    &arr = &source.arr;
+    spare = source.spare;
+    it = Iterator(arr);
+
+    source.arr = nullptr;
+    source.size = 0;
+}
+
+//copy
+template <class T>
+CursorList<T>::CursorList(const CursorList &source)
 {
     size = source.size;
     cap = source.cap;
     arr = source.arr;
     spare = source.spare;
     it = Iterator(arr);
-
-    source.arr = nullptr;
-    source.size = 0;
 }
 
 template <class T>
@@ -229,13 +242,25 @@ void CursorList<T>::Traverse()
         cout << "arr[" << a << "].Data=" << arr[a].Data << "    arr[" << a << "].next=" << arr[a].next << endl;
     }
 
+    cout << "arr[" << spare << "].Data=" << arr[spare].Data << "    arr[" << spare << "].next=" << arr[spare].next << endl;
+
     cout << "head=" << head << "     tail=" << tail << endl;
 
     cout << "begin " << *begin() << "end" << *end() << endl;
     int h;
+    Iterator i2 = end();
+    Iterator i3 = Iterator(arr, spare);
+    if (i2 == i3)
+    {
+        cout << "SOM TAKIE SAME" << *i2 << endl;
+    }
     for (Iterator i = begin(); i != end(); ++i)
     {
-        std::cout << "tran" << *i << endl;
+        if (i == end())
+        {
+            cout << " no i tu się powinno zatrzymać" << endl;
+        }
+        std::cout << "tran" << *i << "->" << i.a << endl;
     }
 
     Iterator i = end();
@@ -252,12 +277,15 @@ T CursorList<T>::pop_front()
         throw runtime_error("pop:empty");
     }
 
-    T temp = arr[head].Data;
-    int sp = spare;
-    spare = head;
-    head = arr[head].next;
-    arr[spare].next = sp;
-    --size;
+    Iterator i = Iterator(arr, head);
+    T temp = *i;
+
+    head = arr[i.a].next;
+    arr[i.a].next = spare;
+    spare = i.a;
+    arr[tail].next = spare;
+
+    size--;
 
     return temp;
 }
@@ -302,18 +330,19 @@ T CursorList<T>::pop_back()
         throw runtime_error("pop:empty");
     }
 
-    Iterator it = Iterator(arr, tail);
+    Iterator itt = Iterator(arr, tail);
     Iterator it2 = Iterator(arr, head);
     Iterator it3 = Iterator(arr, head);
 
-    while (it2 != end())
+    while (it2 != itt)
     {
+
         it3 = it2;
 
         ++it2;
     }
 
-    T temp = *it2;
+    T temp = *it3;
 
     arr[it2.a].next = spare;
     spare = it2.a;
@@ -351,7 +380,6 @@ typename CursorList<T>::Iterator CursorList<T>::find(const T &x)
     }
 
     return end();
-    // throw runtime_error("not find");
 }
 
 template <class T>
@@ -377,7 +405,6 @@ typename CursorList<T>::Iterator CursorList<T>::erase(Iterator t)
     return it2;
 }
 
-// wstawia x przed poz it i zwraca pozycję x
 template <class T>
 typename CursorList<T>::Iterator CursorList<T>::insert(Iterator it, T &&x)
 {
@@ -413,11 +440,9 @@ int CursorList<T>::remove(const T &x)
 
     for (Iterator i = begin(); i != end(); i = find(x))
     {
-        cout << "qwertyu" << endl;
 
         w++;
         erase(i);
     }
-    cout << "KONIEC" << endl;
     return --w;
 }
