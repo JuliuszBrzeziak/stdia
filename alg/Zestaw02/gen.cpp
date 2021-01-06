@@ -11,22 +11,16 @@ int main()
 {
     srand(time(NULL));
     int n = rand() % 1000000;
-    n = 100000;
+    n = 1000;
     cout << n << endl;
 
     for (int i = 0; i < n; i++)
 
     {
-        cout << "F" << endl;
-        cout << rand() % 1000000 << endl;
         cout << "B" << endl;
-        cout << rand() % 1000000 << endl;
-        cout << "f" << endl;
+        cout << i << endl;
         cout << "b" << endl;
     }
-    // for (int j = 0; j < n; j++)
-    // {
-    //     cout << "D" << endl;
-    // }
+
     return 0;
 }

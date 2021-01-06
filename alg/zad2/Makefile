@@ -20,11 +20,11 @@ clean:
 
 
 array: clean
-	$(CC) arraylist.cxx -o arraylist.x -pedantic-errors
+	$(CC) ArrayList.cxx -o arraylist.x -pedantic-errors
 	./arraylist.x
 
 pointer: clean
-	$(CC) pointerlist.cxx -o pointerlist.x -Wall
+	$(CC) PointerList.cxx -o pointerlist.x -Wall
 	./pointerlist.x
 
 
